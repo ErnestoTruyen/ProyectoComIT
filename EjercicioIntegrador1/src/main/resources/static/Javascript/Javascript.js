@@ -8,12 +8,3 @@ $(document).ready( function(){
 				    						      });
 				    						  });
 				   });
-
-
-
-
-
-
-
-
-
