@@ -34,7 +34,10 @@ public class ExampleController {
 	
 	@RequestMapping("/")
 	public String paginaPrincipal() {
+		System.out.print("Commit");
+		
 		return "PaginaPrincipal";
+		
 	}
 	
 	
