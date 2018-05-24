@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    ...
+  </head>
+  <body>
+   
+   <!--Primer fragment para enbeber en el tag Navbar-->
+   
+   	<div th:fragment="NavbarDefault" class="bordes">
+		<div class="row">
+			<div class="col-2"><a href="/Home"><h5>Página Principal</h5></a></div>
+			<div class="col-2"><a href="/ProgramacionJava/1"><h5>Programación Java</h5></a></div>
+			<div class="col-2"><a href="/AplicacionesWeb/1"><h5>Aplicaciones Web</h5></a></div>
+			<div class="col-2"><a href="/Contacto"><h5>Contacto</h5></a></div>
+			<div class="col-4">
+				<div>
+					<form action="/ListarAnuncios">
+						<input id="textarea1" autofocus="autofocus" name="nombreAnuncio"></input>
+						<input type="submit" value="Buscar"></input>
+					</form>
+				</div>
+			</div>
+		</div>      
+    </div>
+    
+    <!--Fin del primer Fragment Navbar-->
+ 
+ 	<!--Segundo fragment para enbeber en el tag Navbar-->
+ 		<div th:fragment="NavbarDePrueba" class="bordes">
+			<div class="row">
+				<div class="col-3"><a href="/Home"><h5>Página Principal sin fragment</h5></a></div>
+				<div class="col-3"><a href="/ProgramacionJava/1"><h5>Programación Java sin fragment</h5></a></div>
+				<div class="col-3"><a href="/AplicacionesWeb/1"><h5>Aplicaciones Web fin fragment</h5></a></div>
+				<div class="col-3"><a href="/Contacto"><h5>Contacto sin fragment</h5></a></div>
+			</div>      
+    	</div>
+    
+    <!--Fin del segundo Fragment Navbar-->
+    	
+  </body>
+  
+</html>
+
+

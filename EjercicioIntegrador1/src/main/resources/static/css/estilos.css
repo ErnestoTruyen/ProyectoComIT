@@ -1,0 +1,221 @@
+
+
+label {
+	padding: 20px;
+	margin: 20 px;
+}
+
+p.verde {
+	background-color: yellow;
+}
+
+p.subrayado, span#spanId1 {
+	border: solid;
+	padding: 10px;
+	margin: 5px;
+}
+
+#id-ventana1 {
+	border: solid;
+	width: 100%;
+	padding: 0px 5px 0px 5px;
+}
+
+#id-ventana2,#id-ventana3,#id-ventana4,#id-ventana5,#id-ventana6,#id-ventana7 {
+	border: solid;
+	padding: 0px 5px 0px 5px;
+}
+
+p#Titulo {
+	text-align: right;
+}
+
+.footer {
+	
+	padding: 0px 5px 0px 5px;
+	text-align: center;
+}
+
+body {
+	background-image: url(https://www.rmol.cz/sites/default/files/main-images/matrix-434035_960_720.jpg);
+	background-size: 100% 100%;
+	
+}
+
+h1,h2,h3,h4,h5,label,p,span {
+	color: white;
+	text-align: center;
+}
+
+li {
+
+	color: #0F0908;
+	text-align: center;
+}
+
+#anuncio, #anuncio1, #anuncio2, #anuncio3, #anuncio4, #anuncio5 {
+	color: white;
+	text-align: center;
+	border: solid white;
+	padding: 20px;
+}
+
+#slide1,#slide2,#slide3,#slide4 {
+	display: block;
+    height: 400px;
+    margin:auto;
+    width: 50%;
+}
+
+.bordes {
+	border: solid white;
+}
+
+article {
+	border: solid white;
+	padding: 10px;
+}
+
+#enbed {
+	color: white;
+	text-align: center;
+	border: solid white;
+	padding: 20px;
+}
+
+#img1,.enlace {
+	display: block;
+    height: 90%;
+    margin:auto;
+    width: 90%;
+    padding: 20px;
+}
+
+li {
+	margin: 1%;
+	
+}
+
+.Resaltar {
+	color: white;
+}
+
+.anuncioGeneric {
+	color: white;
+	text-align: center;
+	border: solid white;
+	padding: 20px;
+}
+
+.autoMargin {
+	margin: auto;
+}
+
+.textarea {
+	background-color: #E1F5A9;
+	color: #000000;
+}
+
+#textarea1 {
+	
+}
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+/****** LOGIN MODAL ******/
+.loginmodal-container {
+  padding: 30px;
+  max-width: 350px;
+  width: 100% !important;
+  background-color: #F7F7F7;
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: roboto;
+}
+
+.loginmodal-container h1 {
+  text-align: center;
+  color: black;
+  font-size: 1.8em;
+  font-family: roboto;
+}
+
+.loginmodal-container input[type=submit] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.loginmodal-container input[type=text], input[type=password] {
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.loginmodal-container input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.loginmodal {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+/* border-radius: 3px; */
+/* -webkit-user-select: none;
+  user-select: none; */
+}
+
+.loginmodal-submit {
+  /* border: 1px solid #3079ed; */
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
+  padding: 17px 0px;
+  font-family: roboto;
+  font-size: 14px;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.loginmodal-submit:hover {
+  /* border: 1px solid #2f5bb7; */
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+.loginmodal-container a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+} 
+
+.login-help{
+  font-size: 12px;
+}
+
+

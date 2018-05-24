@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title th:text="${titulo}"></title>
+<meta charset="utf-8"></meta>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+<meta name="Apuntes desarrollo web y escritorio"
+	content="Apuntes varios sobre programacion web y de escritorio"></meta>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous"></link>
+<!-- Este no se toca -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>	
+
+<link rel="stylesheet" type="text/css" href="/css/estilos.css"></link>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+	
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+<!-- Este no se toca -->
+<script src="https://code.jquery.com/jquery-1.12.4.js" ></script>
+<!-- Este no se toca -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+
+<script th:inline="javascript" src="/Javascript/Javascript.js"></script>
+
+
+
+</head>
+
+<body>
+	
+	<header th:replace="/ElementsLayout/Header :: ${Header}">
+		
+	</header>
+	<nav th:replace="/ElementsLayout/Navbar :: ${Navbar}">
+
+	</nav>
+	
+	<div class="row">
+		<div class="col-9">
+			<section th:replace="/ElementsLayout/Section :: ${Section}">
+			
+						
+			</section>
+		</div>
+	
+		<div class="col-3">
+			<aside th:replace="/ElementsLayout/Aside :: ${Aside}">
+				
+			</aside>
+			
+		</div>
+	</div>		
+			
+	<footer th:replace="/ElementsLayout/Footer :: ${Footer}">
+		
+	</footer>
+
+</body>
+
+</html>
+
+
+
+
+
+

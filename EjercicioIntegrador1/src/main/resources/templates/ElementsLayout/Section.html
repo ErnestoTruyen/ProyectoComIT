@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    ...
+  </head>
+  <body>
+
+
+    <!--Primer fragment para enbeber en el tag Secction-->
+   
+    	<div th:fragment="SectionPaginaPrincipal" class="bordes">
+      		<div>
+        		<h3 th:text="${pestania}"></h3>
+          		<p>Presentación</p>
+				<p>En este sitio se postean semanalmente anuncios relacionados con la programación de aplicaciones, tanto de escritorio
+				   como web, de esta manera se busca compartir el conocimiento obtenido y eseñar a todo aquel que no sepa y quiera saber mas.</p>
+				   <br></br>
+				<p>Tambien son bienvenidas todas aquellas sugerencias que el lector tenga, de ser asi comuniquese con el desarrollador llendo a la pestaña
+				   Contacto o enviando un Email a : Ernestoseisa@outlook.com</p>
+				
+				<input id="img1" type="image" src="/images/code.jpg"></input>
+					
+	  		</div>
+				
+	  		<div class="row">
+	      		<div class="col-6">
+		      		<p>ULTIMOS ANUNCIOS JAVA POSTEADOS</p>
+					
+		  	      	<div class="row anuncioGeneric" th:each="anuncio : ${AnunciosJava}">
+		 	        	<a th:href="${'/ShowView/java/' + anuncio.id}"><h4 th:text="${anuncio.titulo}"></h4></a>
+	              	</div>
+	      		</div>
+		  		<div class="col-6">
+		    		<p>ULTIMOS ANUNCIOS SPRING POSTEADOS</p>
+						
+			  		<div class="row anuncioGeneric" th:each="anuncio : ${AnunciosSpring}">
+			    		<a th:href="${'/ShowView/spring/' + anuncio.id}"><h4 th:text="${anuncio.titulo}"></h4></a>
+			  		</div>
+		  		</div>
+					
+      		</div>
+      
+    	</div>
+    
+    <!--Fin del fragment SectionDefault-->
+    
+
+	<!--Segundo fragment para enbeber en el tag Secction-->
+
+		<div th:fragment="SectionProgramacionJava" class="bordes">
+				<h3 th:text="${pestania}"></h3>
+				
+				<div class="row" th:each="anuncio : ${Anuncios}" id="anuncio">
+					<a th:href="${'/ShowView/' + Entidad+ '/' + anuncio.id}" class="enlace"><h4 th:text="${anuncio.titulo}"></h4></a>
+				</div>
+				<!-- Aca la paginación -->
+				<nav>
+  					<ul class="pagination justify-content-center">
+    					<li class="page-item" th:if="${mostrarAnterior}">
+     		 				<a  th:href="${url + (Pagina-1)}" tabindex="-1" >Anterior</a>
+    					</li>
+    					<li class="page-item" th:if="${mostrarPaginaBegin}">
+    						<a  th:href="${url + (Pagina-1)}" th:text="${Pagina-1}"><!-- aca va el numero de pagina decrementado en 1--></a>
+    					</li>
+    					<li class="page-item active">
+      						<a  th:href="${url + Pagina}" th:text="${Pagina}" class="Resaltar"> <span class="sr-only">(current)</span></a>
+    					</li>
+    					<li class="page-item" th:if="${mostrarPaginaEnd}">
+    						<a  th:href="${url + (Pagina+1)}" th:text="${Pagina+1}"><!-- aca va el numero de pagina incrementado en 1 --></a>
+    					</li>
+    					<li class="page-item" th:if="${mostrarSiguiente}">
+      						<a  th:href="${url + (Pagina+1)}">Siguiente</a>
+    					</li>
+  					</ul>
+				</nav>
+		
+		</div>
+	   
+	<!--Fin del fragment SectionProgramacionJava-->
+
+
+	<!--Tercer fragment para enbeber en el tag Secction-->
+
+		<div th:fragment="SectionProgramacionWeb" class="bordes">
+				<h3 th:text="${pestania}"></h3>
+				
+				<div class="row" th:each="anuncio : ${Anuncios}" id="anuncio">
+					<a th:href="${'/ShowView/' + Entidad+ '/' + anuncio.id}" class="enlace"><h4 th:text="${anuncio.titulo}"></h4></a>
+				</div>
+				<!-- Aca la paginacion -->
+				<nav>
+  					<ul class="pagination justify-content-center">
+    					<li class="page-item" th:if="${mostrarAnterior}">
+     		 				<a  th:href="${url + (Pagina-1)}" tabindex="-1" >Anterior</a>
+    					</li>
+    					<li class="page-item" th:if="${mostrarPaginaBegin}">
+    						<a  th:href="${url + (Pagina-1)}" th:text="${Pagina-1}"><!-- aca va el numero de pagina decrementado en 1--></a>
+    					</li>
+    					<li class="page-item active">
+      						<a  th:href="${url + Pagina}" th:text="${Pagina}" class="Resaltar"> <span class="sr-only">(current)</span></a>
+    					</li>
+    					<li class="page-item" th:if="${mostrarPaginaEnd}">
+    						<a  th:href="${url + (Pagina+1)}" th:text="${Pagina+1}"><!-- aca va el numero de pagina incrementado en 1 --></a>
+    					</li>
+    					<li class="page-item" th:if="${mostrarSiguiente}">
+      						<a  th:href="${url + (Pagina+1)}">Siguiente</a>
+    					</li>
+  					</ul>
+				</nav>
+		
+		</div>
+	   
+	<!--Fin del fragment SectionProgramacionWeb-->
+
+
+
+	<!--Cuarto fragment para enbeber en el tag Secction-->
+
+		<div th:fragment="SectionContacto" class="bordes">
+				<div>
+					<h3 th:text="${pestania}"></h3>
+					
+					<p>Esta es la seccion de consultas, cualquier duda o sugerencia que tenga sobre 
+					el sitio puede hacernosla saber a traves del siguiente formulario: </p><br></br>
+					<form action="#">
+						<label>Asunto: </label>
+							<input type="text" name="asunto"></input><br></br>
+						<label>Consulta:</label>
+							<textarea rows="20" cols="50"></textarea><br></br>
+						<input type="submit" value="Enviar"></input>
+					</form>
+					
+					
+				</div>
+		
+		</div>
+	   
+	<!--Fin del fragment SectionContacto-->
+
+
+	<!--Quinto fragment para enbeber en el tag Secction-->
+
+		<div th:fragment="SectionAnuncio" class="bordes">
+				
+				<div class="row anuncioGeneric">
+					<a href="#" class="anuncioGeneric">Anterior</a>
+					<h3 class="autoMargin" th:text="${anuncio.titulo}"></h3>
+					<a href="#" class="anuncioGeneric">Siguiente</a>
+				</div>
+				
+				<div class="row anuncioGeneric">
+					
+					<textarea th:rows="${Renglones}" cols="140" class="autoMargin textarea" disabled="disabled" 
+						th:text="${anuncio.codigo}"></textarea><br></br>
+					
+					<label class="autoMargin" th:text="${anuncio.textoAnuncio}"></label>
+					
+				</div>
+
+		</div>
+	   
+	<!--Fin del fragment SectionAnuncio-->
+
+	<!--Sexto fragment para enbeber en el tag Secction-->
+
+		<div th:fragment="SectionFormularioUsuario" class="bordes">
+				<h3>Registro</h3>
+				
+				<div>
+					<form action="/CrearUsuario" method="post">
+						<label for="nombre">Nombre de usuario: </label>
+							<input type="text" name="nombre"></input>
+						<label for="contra">Contraseña: </label>	
+							<input type="password" name="contra"></input>
+						<input type="submit" name="enviar" value="Registrar"></input>
+					</form>
+				</div>
+				
+		</div>
+	   
+	<!--Fin del fragment SectionProgramacionWeb-->
+
+
+
+  </body>
+</html>
