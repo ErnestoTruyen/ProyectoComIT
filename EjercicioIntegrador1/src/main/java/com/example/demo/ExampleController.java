@@ -240,6 +240,7 @@ public class ExampleController {
 		//modelo.addAttribute("Anuncios", "Ha cargado exitosamente");
 		
 		return "viewFragment";
+		
 	}
 	//-----------------------------------------------------
 	
