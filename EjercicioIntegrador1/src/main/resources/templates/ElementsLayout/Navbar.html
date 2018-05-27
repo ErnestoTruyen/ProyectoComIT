@@ -1,13 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    ...
+    <meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
   </head>
   <body>
    
    <!--Primer fragment para enbeber en el tag Navbar-->
    
    	<div th:fragment="NavbarDefault" class="bordes">
+   		
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+		    <!-- <a class="navbar-brand" href="/Home">Página principal</a> -->
+		    
+		    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		      
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/Home">Página Principal<span class="sr-only">(current)</span></a>
+		      </li>
+		      
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/ProgramacionJava/1">Programación Java <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/AplicacionesWeb/1">Aplicaciones Web</a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/Contacto">Contacto</a>
+		      </li>
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0" action="/ListarAnuncios">
+		      <input class="form-control mr-sm-2" type="search" id="textarea1" autofocus="autofocus" name="nombreAnuncio" placeholder="Search" aria-label="Search"></input>
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		<!--  
+   		
 		<div class="row">
 			<div class="col-2"><a href="/Home"><h5>Página Principal</h5></a></div>
 			<div class="col-2"><a href="/ProgramacionJava/1"><h5>Programación Java</h5></a></div>
@@ -21,7 +61,9 @@
 					</form>
 				</div>
 			</div>
-		</div>      
+		</div>
+		
+		   -->   
     </div>
     
     <!--Fin del primer Fragment Navbar-->
