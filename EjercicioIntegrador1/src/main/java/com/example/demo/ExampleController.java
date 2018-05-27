@@ -303,15 +303,10 @@ public class ExampleController {
 							   @RequestParam String nombre,
 							   @RequestParam String contra) {
 		
-		//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
-		modelo.addAttribute("Header", "HeaderDefault");
-		modelo.addAttribute("Navbar", "NavbarDefault");
-		modelo.addAttribute("Section", "SectionPaginaPrincipal");
-		modelo.addAttribute("Aside", "AsideDefault");
-		modelo.addAttribute("Footer", "FooterDefault");
+		
 		
 		//si el usuario no esta registrado en la BBDD...
-		if(userRepository.findByUser(nombre, contra) == null) {
+		if(userRepository.findByNombre(nombre) == null) {
 			//creo un hascode para esta sesion y creo el usuario en la BBDD con sus datos
 			String codigo = UUID.randomUUID().toString();
 			sesion.setAttribute("codigo-autorizacion", codigo);
@@ -323,10 +318,17 @@ public class ExampleController {
 	
 			userRepository.save(user);
 			
-			return "viewFragment";
+			return "redirect:/Home";
 			
 		}else {
+			
+			//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
+			modelo.addAttribute("Header", "HeaderDefault");
+			modelo.addAttribute("Navbar", "NavbarDefault");
 			modelo.addAttribute("Section", "SectionNoEncontrado");
+			modelo.addAttribute("Aside", "AsideDefault");
+			modelo.addAttribute("Footer", "FooterDefault");
+			
 			return "viewFragment";
 		}
 	}
@@ -334,21 +336,33 @@ public class ExampleController {
 	@RequestMapping("/LoguearUsuario")
 	public String loguerUsuario(HttpSession sesion,@RequestParam String user,@RequestParam String pass, Model modelo) {
 		
-		//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
-		modelo.addAttribute("Header", "HeaderDefault");
-		modelo.addAttribute("Navbar", "NavbarDefault");
-		modelo.addAttribute("Section", "SectionPaginaPrincipal");
-		modelo.addAttribute("Aside", "AsideDefault");
-		modelo.addAttribute("Footer", "FooterDefault");		
+				
 		
 		Usuario usuario = userRepository.findByUser(user, pass); 
 		if(usuario!= null) {
 			sesion.setAttribute("codigo-autorizacion", usuario.getHascode());
-			return "viewFragment";
+			return "redirect:/Home";
 		}else {
+			
+			//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
+			modelo.addAttribute("Header", "HeaderDefault");
+			modelo.addAttribute("Navbar", "NavbarDefault");
 			modelo.addAttribute("Section", "SectionError");
+			modelo.addAttribute("Aside", "AsideDefault");
+			modelo.addAttribute("Footer", "FooterDefault");
+			
 			return "viewFragment";
 		}
+	}
+	
+	@RequestMapping("/Cerrarsesion")
+	public String cerrarSesion(HttpSession sesion) {
+		
+		if(sesion.getAttribute("codigo-autorizacion") != null) {
+			sesion.setAttribute("codigo-autorizacion", null);
+		}
+		
+		return "redirect:/Home";
 	}
 	
 	
@@ -394,14 +408,8 @@ public class ExampleController {
 	public String mostrarBBDDJava(Model modelo,HttpSession sesion) {
 
 		if(sesion.getAttribute("codigo-autorizacion") == null) {
-			//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
-			modelo.addAttribute("Header", "HeaderDefault");
-			modelo.addAttribute("Navbar", "NavbarDefault");
-			modelo.addAttribute("Section", "SectionPaginaPrincipal");
-			modelo.addAttribute("Aside", "AsideDefault");
-			modelo.addAttribute("Footer", "FooterDefault");
 	
-			return "viewFragment";
+			return "redirect:/Home";
 		}
 		
 		

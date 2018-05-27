@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    ...
+    <meta charset="utf-8"></meta>
+ 
   </head>
   <body>
    
@@ -10,26 +11,68 @@
     
     
 	    <div th:fragment="HeaderDefault" class="bordes">
-	      	<h1>APUNTES DESARROLLO WEB </h1>
-	      	
-	      	<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-
-			<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-	    		<div class="modal-dialog">
-					<div class="loginmodal-container">
-						<h1>Iniciar Sesión</h1><br></br>
-					    <form action="/LoguearUsuario">
-						  <input type="text" name="user" placeholder="Usuario"></input>
-						  <input type="password" name="pass" placeholder="Contraseña"></input>
-						  <input type="submit" name="login" class="login loginmodal-submit" value="Login"></input>
-					    </form>
-						
-					    <div class="login-help">
-						  <a href="/FormularioUsuario">Crear una Cuenta</a> --- <a href="#">Contraseña Olvidada?</a>
-					    </div>
+	    	
+	    	<div class="row">
+	    		<div class="col-10">
+	    			<a href="/Home"><h1>APUNTES DESARROLLO WEB </h1></a>
+	    		</div>
+	    		<div class="col-2">
+	    			<div class="container">
+						<div class="row">
+							<a class="btn btn-primary" data-toggle="modal" href="#Login" >Login</a>
+							
+							<a class="btn btn-primary" href="/Cerrarsesion" >logout</a>
+							
+							
+							<!-- DIV DEL DESPLEGABLE PARA LOGUEARSE -->
+		        			<div class="modal hide" id="Login">
+		          				<div class="modal-header centrado">
+		            				<button type="button" class="close" data-dismiss="modal">X</button>
+		            				<h3>Iniciar sesion</h3>
+		          				</div>
+		          				<div class="modal-body centrado">
+		            				<form method="post" action="/LoguearUsuario" name="login_form">
+		              					<p><input type="text" class="span3" name="user" id="email" placeholder="Email"></input></p>
+		              					<p><input type="password" class="span3" name="pass" placeholder="Password"></input></p>
+		              					<p><button type="submit" class="btn btn-primary">Entrar</button>
+		                					<a href="#">Olvidaste tu contraseña?</a>
+		              					</p>
+		            				</form>
+		          				</div>
+		          				<div class="modal-footer centrado">
+		            				<a href="#NewUser" class="btn btn-primary" data-toggle="modal">
+		            					<button type="button" class="close" data-dismiss="modal">Crear cuenta</button>
+		            				</a>
+		          				</div>
+		        			</div>
+		        			
+		        			
+		        			<!-- DIV DEL DESPLEGABLE PARA CREAR UN USUARIO NUEVO -->
+		        			<div class="modal hide" id="NewUser">
+		          				<div class="modal-header centrado">
+		            				<button type="button" class="close" data-dismiss="modal">X</button>
+		            				<h3>Nuevo Usuario</h3>
+		          				</div>
+		          				<div class="modal-body centrado">
+		            				<form method="post" action="/CrearUsuario" name="login_form">
+		              					<p><input type="text" class="span3" name="nombre" id="email" placeholder="Email"></input></p>
+		              					<p><input type="password" class="span3" name="contra" placeholder="Password"></input></p>
+		              					<p><button type="submit" class="btn btn-primary">Crear</button></p>
+		            				</form>
+		          				</div>
+		        			</div>
+		        			
+		        					        			
+		        			
+						</div>
 					</div>
-				</div>
-		  	</div>
+	    		</div>
+	    	</div>
+	      	
+	      	
+	      	
+	      	
+	      	
 	      	
 	    </div>
 	    

@@ -9,5 +9,6 @@ public interface RepositoryUsers extends JpaRepository<Usuario, Integer>{
 	@Query(value = "SELECT * FROM Usuario WHERE name=?1 AND password=?2", nativeQuery = true)
 	Usuario findByUser(String user,String pass);
 	
-	
+	@Query(value = "SELECT * FROM Usuario WHERE name=?1", nativeQuery = true)
+	Usuario findByNombre(String user);
 }
