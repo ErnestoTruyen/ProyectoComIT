@@ -277,7 +277,7 @@ public class ExampleController {
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
 	
-	//Seccion para sesiones de usuarios
+	//SECCION PARA SESIONES DE USUARIOS
 	
 	
 	//-----------------------------------------------------------------------
@@ -383,7 +383,7 @@ public class ExampleController {
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
 		@RequestMapping("/Validar")
-		public String validar(String Usuario, String Password, String enviado){
+		public String validar(String Usuario, String Password, String enviado,HttpSession sesion){
 			//SI LLEGA ACA DESDE EL FORMULARIO
 			if(enviado != null){
 				//QUERY CON EL PARAMETRO USUARIO
@@ -391,7 +391,13 @@ public class ExampleController {
 				ArrayList<String> admin = repositoryRoot.findByAdmin(Usuario);
 				ArrayList<String> pass = repositoryRoot.findByPass(Password);
 				if( !admin.isEmpty() && !pass.isEmpty()){
-					return "redirect:/BBDD/MostrarJava";
+					
+					//creo un hascode para esta sesion y creo el usuario en la BBDD con sus datos
+					String codigo = repositoryRoot.findByHascode(Usuario);
+					sesion.setAttribute("codigo-autorizacion", codigo);
+
+					
+					return "redirect:/BBDD/MostrarJava/"+ admin.get(0);
 				}
 			}
 			return "redirect:/AccesoRoot";
@@ -404,10 +410,10 @@ public class ExampleController {
 	
 	//                      MOSTRAR ANUNCIOS
 	//---------------------------------------------------------------
-	@RequestMapping("/BBDD/MostrarJava")
-	public String mostrarBBDDJava(Model modelo,HttpSession sesion) {
+	@RequestMapping("/BBDD/MostrarJava/{admin}")
+	public String mostrarBBDDJava(Model modelo,HttpSession sesion,@PathVariable String admin) {
 
-		if(sesion.getAttribute("codigo-autorizacion") == null) {
+		if(sesion.getAttribute("codigo-autorizacion") != repositoryRoot.findByHascode(admin)) {
 	
 			return "redirect:/Home";
 		}

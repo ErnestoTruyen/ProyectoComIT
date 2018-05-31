@@ -14,8 +14,9 @@ public class Administradores {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private String usuario;
+	private String administrador;
 	private String contrasenia;
+	private String hascode;
 	private Date fechaPublicacion= new Date();
 	
 	protected Administradores() {
@@ -35,12 +36,14 @@ public class Administradores {
 		return id;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	
+
+	public String getAdministrador() {
+		return administrador;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setAdministrador(String administrador) {
+		this.administrador = administrador;
 	}
 
 	public String getContrasenia() {
@@ -49,6 +52,14 @@ public class Administradores {
 
 	public void setContrasenia(String cantrasenia) {
 		this.contrasenia = cantrasenia;
+	}
+
+	public String getHascode() {
+		return hascode;
+	}
+
+	public void setHascode(String hascode) {
+		this.hascode = hascode;
 	}
 
 	
