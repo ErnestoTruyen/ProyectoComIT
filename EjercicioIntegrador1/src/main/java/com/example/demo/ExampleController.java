@@ -396,6 +396,7 @@ public class ExampleController {
 					//Consigo de la BBDD el hascode para esta sesion
 					String codigo = repositoryRoot.findByHascode(Usuario);
 					sesion.setAttribute("codigo-autorizacion", codigo);
+					sesion.setAttribute("Admin", admin);
 
 					
 					return "redirect:/BBDD/MostrarJava/"+ admin;
@@ -433,11 +434,11 @@ public class ExampleController {
 	}
 	
 	@RequestMapping("/BBDD/InsertarJava")
-	public String insertarJava(Model modelo, JavaAnuncio anuncio) {
+	public String insertarJava(Model modelo, JavaAnuncio anuncio,HttpSession sesion) {
 		
 		repositoryJava.save(anuncio);
 		
-		return "redirect:/BBDD/MostrarJava";
+		return "redirect:/BBDD/MostrarJava/" + sesion.getAttribute("Admin");
 	}
 	//---------------------------------------------------------------
 	
