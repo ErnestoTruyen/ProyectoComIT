@@ -389,7 +389,7 @@ public class ExampleController {
 				//ME TRAE UN STRING
 				String admin = repositoryRoot.findByAdmin(Usuario);
 				String pass = repositoryRoot.findByPass(Password);
-				if( admin.equals(null) && pass.equals(null)){
+				if( admin.equals("") && pass.equals("")){
 					
 					//Consigo de la BBDD el hascode para esta sesion
 					String codigo = repositoryRoot.findByHascode(Usuario);
