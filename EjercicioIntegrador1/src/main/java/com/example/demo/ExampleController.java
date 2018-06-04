@@ -452,22 +452,22 @@ public class ExampleController {
 	}
 	
 	@RequestMapping("/BBDD/UpdateAnuncio/Java/{id}")
-	public String updateAnuncio(@PathVariable int id, String Titulo, String Texto) {
+	public String updateAnuncio(@PathVariable int id, String Titulo, String Texto,HttpSession sesion) {
 		JavaAnuncio anuncio = repositoryJava.findOne(id);
 		anuncio.setTitulo(Titulo);
 		anuncio.setTextoAnuncio(Texto);
 		
 		repositoryJava.save(anuncio);
-		return "redirect:/BBDD/MostrarJava";
+		return "redirect:/BBDD/MostrarJava/" + sesion.getAttribute("Admin");
 	}
 	//---------------------------------------------------------------
 	
 	//                       BORRAR ANUNCIO
 	//---------------------------------------------------------------
 	@RequestMapping("/BBDD/BorrarJava/{id}")
-	public String deleteAnuncioJava(@PathVariable int id) {
+	public String deleteAnuncioJava(@PathVariable int id,HttpSession sesion) {
 		repositoryJava.delete(id);
-		return "redirect:/BBDD/MostrarJava";
+		return "redirect:/BBDD/MostrarJava/" + sesion.getAttribute("Admin");
 	}
 	//---------------------------------------------------------------
 	//-----------------------------------------------------------------------
