@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -388,16 +387,16 @@ public class ExampleController {
 			if(enviado != null){
 				//QUERY CON EL PARAMETRO USUARIO
 				//ME TRAE UN STRING
-				ArrayList<String> admin = repositoryRoot.findByAdmin(Usuario);
-				ArrayList<String> pass = repositoryRoot.findByPass(Password);
-				if( !admin.isEmpty() && !pass.isEmpty()){
+				String admin = repositoryRoot.findByAdmin(Usuario);
+				String pass = repositoryRoot.findByPass(Password);
+				if( admin == null && pass == null){
 					
 					//Consigo de la BBDD el hascode para esta sesion
 					String codigo = repositoryRoot.findByHascode(Usuario);
 					sesion.setAttribute("codigo-autorizacion", codigo);
 
 					
-					return "redirect:/BBDD/MostrarJava/"+ admin.get(0);
+					return "redirect:/BBDD/MostrarJava/"+ admin;
 				}
 			}
 			return "redirect:/AccesoRoot";
@@ -413,7 +412,7 @@ public class ExampleController {
 	@RequestMapping("/BBDD/MostrarJava/{admin}")
 	public String mostrarBBDDJava(Model modelo,HttpSession sesion,@PathVariable String admin) {
 
-		if(sesion.getAttribute("codigo-autorizacion").equals(repositoryRoot.findByHascode(admin)) ) {
+		if(!sesion.getAttribute("codigo-autorizacion").equals(repositoryRoot.findByHascode(admin)) ) {
 	
 			return "redirect:/Home";
 		}
