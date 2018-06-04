@@ -4,6 +4,9 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.simplejavamail.email.Email;
+import org.simplejavamail.email.EmailBuilder;
+import org.simplejavamail.mailer.MailerBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.AbstractPageRequest;
 import org.springframework.data.domain.Page;
@@ -367,6 +370,27 @@ public class ExampleController {
 	
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
+	
+	
+	@RequestMapping("/ApiOutlook")
+	public String contacto(@RequestParam String asunto, @RequestParam String mensaje){
+		
+		
+		Email email = EmailBuilder.startingBlank()
+			    .from("Ernesto Truyen", "ernestoseisa@outlook.com")
+			    .to("ernesto Truyen", "ernestoseisa@outlook.com")
+			    .withSubject("Hello word")
+			    .withPlainText("mensaje")
+			    .buildEmail();
+
+			MailerBuilder
+			  .withSMTPServer("smtp.sendgrid.net", 587, "apikey", "")
+			  .buildMailer()
+			  .sendMail(email);
+		
+		
+		return "redirect:/Contacto";
+	}
 	
 	
 	//CRUD DE LA  BBDD
