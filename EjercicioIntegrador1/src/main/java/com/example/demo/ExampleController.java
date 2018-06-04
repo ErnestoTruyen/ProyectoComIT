@@ -388,9 +388,11 @@ public class ExampleController {
 				//QUERY CON EL PARAMETRO USUARIO
 				//ME TRAE UN STRING
 				String admin = repositoryRoot.findByAdmin(Usuario);
+				System.out.println(admin);
 				String pass = repositoryRoot.findByPass(Password);
-				if( admin.equals("") && pass.equals("")){
-					
+				System.out.println(pass);
+				if( !admin.equals(null) && !pass.equals(null)){
+					System.out.println("paso el null");	
 					//Consigo de la BBDD el hascode para esta sesion
 					String codigo = repositoryRoot.findByHascode(Usuario);
 					sesion.setAttribute("codigo-autorizacion", codigo);
