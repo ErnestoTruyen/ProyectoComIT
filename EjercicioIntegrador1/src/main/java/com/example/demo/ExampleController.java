@@ -8,6 +8,7 @@ import org.simplejavamail.email.Email;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.mailer.MailerBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.AbstractPageRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.querydsl.QPageRequest;
@@ -30,7 +31,8 @@ public class ExampleController {
 	private RootRepository repositoryRoot;
 	@Autowired
 	private RepositoryUsers userRepository;
-	
+	@Autowired
+	private Environment env;
 	
 	
 	
@@ -378,13 +380,13 @@ public class ExampleController {
 		
 		Email email = EmailBuilder.startingBlank()
 			    .from("Ernesto Truyen", "ernestoseisa@outlook.com")
-			    .to("ernesto Truyen", "ernestoseisa@outlook.com")
-			    .withSubject("Hello word")
-			    .withPlainText("mensaje")
+			    .to("ernesto Truyen", "ernesto1995truyen@gmail.com")
+			    .withSubject(asunto)
+			    .withPlainText(mensaje)
 			    .buildEmail();
 
 			MailerBuilder
-			  .withSMTPServer("smtp.sendgrid.net", 587, "apikey", "")
+			  .withSMTPServer(env.getProperty("SMTP_URL"), 587, "apikey", env.getProperty("SMTP_PASSWORD"))
 			  .buildMailer()
 			  .sendMail(email);
 		
