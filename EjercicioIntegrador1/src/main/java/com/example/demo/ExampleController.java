@@ -392,7 +392,7 @@ public class ExampleController {
 				ArrayList<String> pass = repositoryRoot.findByPass(Password);
 				if( !admin.isEmpty() && !pass.isEmpty()){
 					
-					//creo un hascode para esta sesion y creo el usuario en la BBDD con sus datos
+					//Consigo de la BBDD el hascode para esta sesion
 					String codigo = repositoryRoot.findByHascode(Usuario);
 					sesion.setAttribute("codigo-autorizacion", codigo);
 
@@ -413,7 +413,7 @@ public class ExampleController {
 	@RequestMapping("/BBDD/MostrarJava/{admin}")
 	public String mostrarBBDDJava(Model modelo,HttpSession sesion,@PathVariable String admin) {
 
-		if(sesion.getAttribute("codigo-autorizacion") != repositoryRoot.findByHascode(admin)) {
+		if(sesion.getAttribute("codigo-autorizacion").equals(repositoryRoot.findByHascode(admin)) ) {
 	
 			return "redirect:/Home";
 		}
