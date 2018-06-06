@@ -22,9 +22,9 @@
 	    		<div class="col-2">
 	    			<div class="container">
 						<div class="row">
-							<a class="btn btn-primary" data-toggle="modal" href="#Login" >Login</a>
+							<a th:if="${login}" class="btn btn-primary" data-toggle="modal" href="#Login" >Login</a>
 							
-							<a class="btn btn-primary" href="/Cerrarsesion" >logout</a>
+							<a th:if="${logout}" class="btn btn-primary" href="/Cerrarsesion" >logout</a>
 							
 							
 							<!-- DIV DEL DESPLEGABLE PARA LOGUEARSE -->

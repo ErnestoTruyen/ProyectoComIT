@@ -60,12 +60,24 @@ public class ExampleController {
 		modelo.addAttribute("AnunciosSpring", repositorySpring.findByLasts());
 		modelo.addAttribute("pestania", "Página Principal");
 		
+		//Atributos del modelo para mostrar o no los botones Login/Logout
+		
+		//Si no esta logueado pone login=true / logout=false
+		if(sesion.getAttribute("codigo-autorizacion") == null) {
+			modelo.addAttribute("login", true);
+			modelo.addAttribute("logout", false);
+		//Si esta logueado asigna login=false / logout=true
+		}else {
+			modelo.addAttribute("login", false);
+			modelo.addAttribute("logout", true);
+		}
+		
 		
 		return "viewFragment";
 	}
 	
 	@RequestMapping("/ProgramacionJava/{pagina}")
-	public String programacionJava(Model modelo,@PathVariable int pagina) {
+	public String programacionJava(Model modelo,@PathVariable int pagina,HttpSession sesion) {
 		
 		//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
 		modelo.addAttribute("Header", "HeaderDefault");
@@ -73,6 +85,11 @@ public class ExampleController {
 		modelo.addAttribute("Section", "SectionProgramacionJava");
 		modelo.addAttribute("Aside", "AsideDefault");
 		modelo.addAttribute("Footer", "FooterDefault");
+		
+		
+		//Sector para la paginacion de los anuncios 
+		//------------------------------------------------------------------------
+		//------------------------------------------------------------------------
 		
 		//Se le resta 1 a pagina dado que empiezan en cero
 		AbstractPageRequest consulta = new QPageRequest((pagina-1),5);
@@ -109,6 +126,22 @@ public class ExampleController {
 				modelo.addAttribute("mostrarSiguiente", true);
 			}
 			
+		//------------------------------------------------------------------------
+		//------------------------------------------------------------------------
+			
+			//Atributos del modelo para mostrar o no los botones Login/Logout
+			
+			//Si no esta logueado pone login=true / logout=false
+			if(sesion.getAttribute("codigo-autorizacion") == null) {
+				modelo.addAttribute("login", true);
+				modelo.addAttribute("logout", false);
+			//Si esta logueado asigna login=false / logout=true
+			}else {
+				modelo.addAttribute("login", false);
+				modelo.addAttribute("logout", true);
+			}
+
+		
 		
 		return "viewFragment";
 	}
@@ -116,7 +149,7 @@ public class ExampleController {
 	
 	
 	@RequestMapping("/AplicacionesWeb/{pagina}")
-	public String aplicacionesWeb(Model modelo,@PathVariable int pagina) {
+	public String aplicacionesWeb(Model modelo,@PathVariable int pagina, HttpSession sesion) {
 		
 		//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
 		modelo.addAttribute("Header", "HeaderDefault");
@@ -125,6 +158,10 @@ public class ExampleController {
 		modelo.addAttribute("Aside", "AsideDefault");
 		modelo.addAttribute("Footer", "FooterDefault");
 		
+		
+		//Sector para la paginacion de los anuncios 
+		//------------------------------------------------------------------------
+		//------------------------------------------------------------------------
 		
 		AbstractPageRequest consulta = new QPageRequest((pagina-1),5);
 		Page<SpringAnuncio> consultaPageSiguiente=  repositorySpring.findAll(consulta);
@@ -158,13 +195,28 @@ public class ExampleController {
 				modelo.addAttribute("mostrarSiguiente", true);
 			}
 			
-			//modelo.addAttribute("Anuncios", "Ha cargado exitosamente");
+		//------------------------------------------------------------------------
+		//------------------------------------------------------------------------
+			
+			//Atributos del modelo para mostrar o no los botones Login/Logout
+			
+			//Si no esta logueado pone login=true / logout=false
+			if(sesion.getAttribute("codigo-autorizacion") == null) {
+				modelo.addAttribute("login", true);
+				modelo.addAttribute("logout", false);
+			//Si esta logueado asigna login=false / logout=true
+			}else {
+				modelo.addAttribute("login", false);
+				modelo.addAttribute("logout", true);
+			}
+			
+			
 		
 		return "viewFragment";
 	}
 	
 	@RequestMapping("/Contacto")
-	public String contacto(Model modelo) {
+	public String contacto(Model modelo, HttpSession sesion) {
 		
 		//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
 		modelo.addAttribute("Header", "HeaderDefault");
@@ -174,6 +226,21 @@ public class ExampleController {
 		modelo.addAttribute("Footer", "FooterDefault");
 				
 		modelo.addAttribute("pestania", "Contacto");
+		
+		
+		//Atributos del modelo para mostrar o no los botones Login/Logout
+		
+		//Si no esta logueado pone login=true / logout=false
+		if(sesion.getAttribute("codigo-autorizacion") == null) {
+			modelo.addAttribute("login", true);
+			modelo.addAttribute("logout", false);
+		//Si esta logueado asigna login=false / logout=true
+		}else {
+			modelo.addAttribute("login", false);
+			modelo.addAttribute("logout", true);
+		}
+		
+		
 		return "viewFragment";
 	}
 	//-----------------------------------------------------
@@ -181,7 +248,7 @@ public class ExampleController {
 	
 	//-----------------------------------------------------
 	@RequestMapping("/ShowView/{entidad}/{id}")
-	public String mostrarAnuncio(Model modelo,@PathVariable String entidad,@PathVariable int id) {
+	public String mostrarAnuncio(Model modelo,@PathVariable String entidad,@PathVariable int id, HttpSession sesion) {
 		
 		//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
 		modelo.addAttribute("Header", "HeaderDefault");
@@ -190,6 +257,20 @@ public class ExampleController {
 		modelo.addAttribute("Aside", "AsideDefault");
 		modelo.addAttribute("Footer", "FooterDefault");
 
+		//Atributos del modelo para mostrar o no los botones Login/Logout
+		
+		//Si no esta logueado pone login=true / logout=false
+		if(sesion.getAttribute("codigo-autorizacion") == null) {
+			modelo.addAttribute("login", true);
+			modelo.addAttribute("logout", false);
+		//Si esta logueado asigna login=false / logout=true
+		}else {
+			modelo.addAttribute("login", false);
+			modelo.addAttribute("logout", true);
+		}
+		
+		
+		
 
 		
 		if(entidad.equals("java")) {
@@ -241,7 +322,7 @@ public class ExampleController {
 			return "redirect:/Home";
 		}
 		
-		//modelo.addAttribute("Anuncios", "Ha cargado exitosamente");
+		
 		
 		return "viewFragment";
 		
@@ -373,13 +454,13 @@ public class ExampleController {
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
 	
-	
-	@RequestMapping("/ApiOutlook")
+	//Url para enviar un Email
+	@RequestMapping("/ApiGmail")
 	public String contacto(@RequestParam String asunto, @RequestParam String mensaje){
 		
 		
 		Email email = EmailBuilder.startingBlank()
-			    .from("Ernesto Truyen", "ernestoseisa@outlook.com")
+			    .from("Ernesto Truyen", "ernesto1995truyen@gmail.com")
 			    .to("ernesto Truyen", "ernesto1995truyen@gmail.com")
 			    .withSubject(asunto)
 			    .withPlainText(mensaje)
