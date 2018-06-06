@@ -103,10 +103,15 @@ li {
 .anuncioGeneric {
 	color: white;
 	text-align: center;
-	border: solid white;
 	padding: 20px;
 }
 
+.nombreAnuncio {
+	color: white;
+	text-align: center;
+	display: inline;
+	padding: 20px;
+}
 .autoMargin {
 	margin: auto;
 }
