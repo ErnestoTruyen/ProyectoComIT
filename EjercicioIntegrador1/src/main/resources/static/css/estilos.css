@@ -109,7 +109,7 @@ li {
 .nombreAnuncio {
 	color: white;
 	text-align: center;
-	
+	display: inline;
 	padding: 20px;
 }
 .autoMargin {
