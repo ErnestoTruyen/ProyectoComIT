@@ -40,5 +40,7 @@ public class TipeRestController {
 		return respuesta;
 	}
 	
+		
+	
 	
 }

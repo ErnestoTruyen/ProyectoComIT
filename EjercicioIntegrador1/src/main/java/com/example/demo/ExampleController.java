@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -256,6 +257,7 @@ public class ExampleController {
 		modelo.addAttribute("Section", "SectionAnuncio");
 		modelo.addAttribute("Aside", "AsideDefault");
 		modelo.addAttribute("Footer", "FooterDefault");
+		modelo.addAttribute("Tabla",entidad);
 
 		//Atributos del modelo para mostrar o no los botones Login/Logout
 		
@@ -269,11 +271,26 @@ public class ExampleController {
 			modelo.addAttribute("logout", true);
 		}
 		
-		
+		//Atributos del modelo para mostrar o no los labels Anterior / Siguiente
+		//Por default estan cargados en true los dos
+		modelo.addAttribute("mostrarLabelAnterior", true);
+		modelo.addAttribute("mostrarLabelSiguiente", true);
 		
 
-		
+		//---------------------------------
+		//Si pertenece a la tabla java...
+		//---------------------------------
 		if(entidad.equals("java")) {
+			
+			//Si es el ultimo anuncio en la tabla...
+			if(repositoryJava.findByNextId(id).size() == 0) {
+				modelo.addAttribute("mostrarLabelSiguiente", false);
+			
+			//Si es el primer anuncio en la tabla...	
+			}else if(repositoryJava.findByPreviousId(id).size() == 0) {
+				modelo.addAttribute("mostrarLabelAnterior", false);
+				
+			}
 			
 			String Codigo = repositoryJava.findOne(id).getCodigo();
 			int renglones=0;
@@ -281,6 +298,7 @@ public class ExampleController {
 			if(Codigo!=null) {
 				char[] codigoChanged = Codigo.toCharArray();
 				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo Codigo
 				for(int i=0; i<codigoChanged.length; i++) {
 					if(codigoChanged[i]=='\n') {
 						renglones++;
@@ -295,7 +313,23 @@ public class ExampleController {
 			//Atributo con el objeto AnuncioJava cargado
 			modelo.addAttribute("anuncio", repositoryJava.findOne(id));
 			
+			
+		//---------------------------------
+		//Si pertenece a la tabla Spring...
+		//---------------------------------			
+			
 		}else if(entidad.equals("spring")) {
+			
+			//Si es el ultimo anuncio en la tabla...
+			if(repositorySpring.findByNextId(id).size() == 0) {
+				modelo.addAttribute("mostrarLabelSiguiente", false);
+			
+			//Si es el primer anuncio en la tabla...	
+			}else if(repositorySpring.findByPreviousId(id).size() == 0) {
+				modelo.addAttribute("mostrarLabelAnterior", false);
+				
+			}
+			
 			
 			String Codigo = repositorySpring.findOne(id).getCodigo();
 			int renglones=0;
@@ -304,6 +338,7 @@ public class ExampleController {
 				
 				char[] codigoChanged = Codigo.toCharArray();
 				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo Codigo
 				for(int i=0; i<codigoChanged.length; i++) {
 					if(codigoChanged[i]=='\n') {
 						renglones++;
@@ -328,6 +363,233 @@ public class ExampleController {
 		
 	}
 	//-----------------------------------------------------
+	
+	//-----------------------------------------------------
+	//-----------------------------------------------------
+	@ResponseBody
+	@RequestMapping("/MostrarAnuncio-ajax/{entidad}/{id}/{anuncio}")
+	public String anuncioNext(@PathVariable String entidad, @PathVariable int id, @PathVariable String anuncio,Model modelo,HttpSession sesion) {
+		
+		//Atributos del modelo para mostrar o no los botones Login/Logout
+		
+		//Si no esta logueado pone login=true / logout=false
+		if(sesion.getAttribute("codigo-autorizacion") == null) {
+			modelo.addAttribute("login", true);
+			modelo.addAttribute("logout", false);
+		//Si esta logueado asigna login=false / logout=true
+		}else {
+			modelo.addAttribute("login", false);
+			modelo.addAttribute("logout", true);
+		}
+		
+		
+		//VARIABLES Y OBJETOS
+		int renglones=1;
+		/*Esta variable es para contar cuantos enters tiene el campo codigo de un anuncio
+		 * y de esa forma asignar ese valor al alto del textarea que lo va a mostrar*/
+		
+		int ID;
+		/*Esta variable es para almacenar el campo id del anuncio que se quiere mostrar
+		 * id minuscula es el id anterior al que se quiere mostrar (ID)
+		 * ID mayuscula es el id que se quiere mostrar
+		 * id minuscula < ID mayuscula  siempre-----*/
+		String labelAnterior="";
+		String labelSiguiente="";
+		/*Estas son para almacenar tags label y concatenarlos en el html que retorna el metodo
+		 * Si se los carga entonces los "botones" Anterior / Siguiente aparecen para el usuario*/
+		JavaAnuncio anuncioJava;
+		SpringAnuncio anuncioSpring;
+		
+		
+		if(entidad.equals("java")) {
+			
+			
+			
+			
+			if(anuncio.equals("siguiente")) {
+				
+				//Aqui consigo el id del siguiente anuncio en la tabla
+				ID = repositoryJava.findByNextId(id).get(0);
+				//Si NO es el ultimo anuncio de la tabla...
+				if(repositoryJava.findByNextId(ID).size() != 0) {
+					
+					labelSiguiente = "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+							"	                 data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='siguiente'\r\n" + 
+							"			         >Siguiente</label>\r\n";
+				}
+				
+				labelAnterior= "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+						"				   data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='anterior'\r\n" +
+						"                   >Anterior</label>\r\n";
+				
+				
+				
+			}else if (anuncio.equals("anterior")) {
+				
+				//Aqui consigo el id del anuncio anterior en la tabla
+				ID = repositoryJava.findByPreviousId(id).get(0);
+				//Si NO es el primer anuncio de la tabla..
+				if(repositoryJava.findByPreviousId(ID).size() != 0) {
+					
+					labelAnterior= "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+							"				   data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='anterior'\r\n" +
+							"                   >Anterior</label>\r\n";
+				}
+				
+				labelSiguiente = "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+						"	                 data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='siguiente'\r\n" + 
+						"			         >Siguiente</label>\r\n";
+				
+				
+				
+			} else {
+				ID = id;
+				
+			}
+			
+			
+			String Codigo = repositoryJava.findOne(ID).getCodigo();
+			
+			//validacion por si el campo codigo esta cargado como null
+			if(Codigo!=null) {
+				char[] codigoChanged = Codigo.toCharArray();
+				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo Codigo
+				for(int i=0; i<codigoChanged.length; i++) {
+					if(codigoChanged[i]=='\n') {
+						renglones++;
+					}
+				}
+				
+				
+			}else {
+				renglones=3;
+				
+			}
+			
+			
+			//Obtengo el anuncio de la tabla Java con el ID mayuscula
+			anuncioJava = repositoryJava.findOne(ID);
+			
+			String newHtml = " <script th:inline=\"javascript\" src=\"/Javascript/Javascript.js\"></script>" + 
+					"			<div id=\"remplazar\">" +
+			        "           <div class=\"row anuncioGeneric\">\r\n" + 
+					"	        "+labelAnterior + 
+					"			<h3 class=\"autoMargin\">"+anuncioJava.getTitulo()+"</h3>\r\n" + 
+					"	        "+labelSiguiente + 
+					"		  </div>\r\n" + 
+					"		  \r\n" + 
+					"		  <div class=\"row anuncioGeneric\">\r\n" + 
+					"		  \r\n" + 
+					"		  	<textarea rows=\""+renglones+"\" cols=\"140\" class=\"autoMargin textarea\" disabled=\"disabled\">"	+
+										  anuncioJava.getCodigo()+"</textarea><br></br>\r\n" + 
+					"			\r\n" + 
+					"			<label class=\"autoMargin\">"+anuncioJava.getTextoAnuncio()+"</label>\r\n" + 
+					"			\r\n" + 
+					"		  </div>" +
+					"         </div>";
+			
+			return newHtml;
+			
+			
+			
+		}else if(entidad.equals("spring")) {
+			
+
+			if(anuncio.equals("siguiente")) {
+				
+				//Aqui consigo el id del siguiente anuncio en la tabla
+				ID = repositorySpring.findByNextId(id).get(0);
+				//Si NO es el ultimo anuncio de la tabla...
+				if(repositorySpring.findByNextId(ID).size() != 0) {
+					
+					labelSiguiente = "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+							"	                 data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='siguiente'\r\n" + 
+							"			         >Siguiente</label>\r\n";
+				}
+				
+				labelAnterior= "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+						"				   data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='anterior'\r\n" +
+						"                   >Anterior</label>\r\n";
+				
+			}else if (anuncio.equals("anterior")) {
+				
+				//Aqui consigo el id del anuncio anterior en la tabla
+				ID = repositorySpring.findByPreviousId(id).get(0);
+				//Si NO es el primer anuncio de la tabla...
+				if(repositorySpring.findByPreviousId(ID).size() != 0) {
+					
+					labelAnterior= "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+							"				   data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='anterior'\r\n" +
+							"                   >Anterior</label>\r\n";
+				}
+				
+				labelSiguiente = "<label class=\"anuncioGeneric btnSiguiente\"\r\n" + 
+						"	                 data-id=\""+ID+"\"  data-entidad=\""+entidad+"\" data-anuncio='siguiente'\r\n" + 
+						"			         >Siguiente</label>\r\n";
+				
+
+				
+			} else {
+				ID = id;
+				
+			}
+
+			
+			
+			String Codigo = repositorySpring.findOne(ID).getCodigo();
+			
+			//validacion por si el campo codigo esta cargado como null
+			if(Codigo!=null) {
+				
+				char[] codigoChanged = Codigo.toCharArray();
+				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo Codigo
+				for(int i=0; i<codigoChanged.length; i++) {
+					if(codigoChanged[i]=='\n') {
+						renglones++;
+					}
+				}
+			
+				
+			}else {
+				renglones=3;
+				
+			}
+			
+			//Obtengo el anuncio de la tabla Spring con el ID mayuscula
+			anuncioSpring = repositorySpring.findOne(ID);
+			
+			String newHtml = " <script th:inline=\"javascript\" src=\"/Javascript/Javascript.js\"></script>" + 
+					"          <div id=\"remplazar\">" +
+			        "           <div class=\"row anuncioGeneric\">\r\n" + 
+					"		   "+labelAnterior + 
+					"			<h3 class=\"autoMargin\">"+anuncioSpring.getTitulo()+"</h3>\r\n" + 
+					"		   "+labelSiguiente + 
+					"		  </div>\r\n" + 
+					"		  \r\n" + 
+					"		  <div class=\"row anuncioGeneric\">\r\n" + 
+					"		  \r\n" + 
+					"		  	<textarea rows=\""+renglones+"\" cols=\"140\" class=\"autoMargin textarea\" disabled=\"disabled\">"	+
+										  anuncioSpring.getCodigo() +"</textarea><br></br>\r\n" + 
+					"			\r\n" + 
+					"			<label class=\"autoMargin\">"+anuncioSpring.getTextoAnuncio()+"</label>\r\n" + 
+					"			\r\n" + 
+					"		  </div>" +
+					"         </div>";
+			
+			
+			return newHtml;
+			
+		}else {
+			return "<p>Algo salio mal</p>";
+		}
+	
+	}
+	//-----------------------------------------------------
+	//-----------------------------------------------------
+
+	
 	
 	//hacer la validacion de nombres de anuncios en las dos tablas 
 	@RequestMapping("/ListarAnuncios")

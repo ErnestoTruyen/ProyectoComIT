@@ -50,9 +50,11 @@
 		<div th:fragment="SectionProgramacionJava" class="bordes">
 				<h3 th:text="${pestania}"></h3>
 				
-				<div class="row" th:each="anuncio : ${Anuncios}" id="anuncio">
+				<div class="row anuncioGeneric" th:each="anuncio : ${Anuncios}" id="anuncioResaltado">
 					<a th:href="${'/ShowView/' + Entidad+ '/' + anuncio.id}" class="enlace"><h4 th:text="${anuncio.titulo}"></h4></a>
 				</div>
+				
+				
 				<!-- Aca la paginación -->
 				<nav>
   					<ul class="pagination justify-content-center">
@@ -84,7 +86,7 @@
 		<div th:fragment="SectionProgramacionWeb" class="bordes">
 				<h3 th:text="${pestania}"></h3>
 				
-				<div class="row" th:each="anuncio : ${Anuncios}" id="anuncio">
+				<div class="row anuncioGeneric" th:each="anuncio : ${Anuncios}">
 					<a th:href="${'/ShowView/' + Entidad+ '/' + anuncio.id}" class="enlace"><h4 th:text="${anuncio.titulo}"></h4></a>
 				</div>
 				<!-- Aca la paginacion -->
@@ -117,23 +119,39 @@
 	<!--Cuarto fragment para enbeber en el tag Secction-->
 
 		<div th:fragment="SectionContacto" class="bordes">
-				<div>
+				<div class="row centrado">
 					<h3 th:text="${pestania}"></h3>
 					
 					<p>Esta es la seccion de consultas, cualquier duda o sugerencia que tenga sobre 
 					el sitio puede hacernosla saber a traves del siguiente formulario: </p><br></br>
-					<form action="/ApiGmail" method="post">
-						<label>Asunto: </label>
-							<input type="text" name="asunto"></input><br></br>
-						<label>Consulta:</label>
-							<textarea rows="20" cols="50" name="mensaje"></textarea><br></br>
-						<input type="submit" value="Enviar"></input>
-					</form>
+
+				</div>
+				<div class="row">
+					<div class="col-3">
+						
+					</div>
+					<div class="col-6">
+						<form action="/ApiGmail" method="post">
+						  <div>
+						    <p for="asunto">Asunto:</p>
+						    <input type="text" class="form-control" id="asunto" name="asunto" aria-describedby="emailHelp" placeholder="Enter affair"></input>
+						  </div>
+						  <div>
+						    <p for="mensaje">Mensaje:</p>
+						    <textarea rows="10" cols="10" class="form-control" id="mensaje" name="mensaje"></textarea>
+						  </div>
+						  <button type="submit" class="btn btn-primary">Enviar</button>
+						</form>
+					</div>
+					<div class="col-3">
+						
+					</div>				
 					
 					
 				</div>
 		
-		</div>
+		</div>		
+		
 	   
 	<!--Fin del fragment SectionContacto-->
 
@@ -142,21 +160,24 @@
 
 		<div th:fragment="SectionAnuncio" class="bordes">
 				
-				<div class="row anuncioGeneric">
-					<a href="#" class="anuncioGeneric">Anterior</a>
-					<h3 class="autoMargin" th:text="${anuncio.titulo}"></h3>
-					<a href="#" class="anuncioGeneric">Siguiente</a>
+				<div id="remplazar">
+					<div class="row anuncioGeneric">
+						<label th:if="${mostrarLabelAnterior}" class="anuncioGeneric btnSiguiente"
+							   th:attr="data-id=${anuncio.id} ,data-entidad=${Tabla} ,data-anuncio='anterior'">Anterior</label>
+						<h3 class="autoMargin" th:text="${anuncio.titulo}"></h3>
+						<label th:if="${mostrarLabelSiguiente}" class="anuncioGeneric btnSiguiente"
+							   th:attr="data-id=${anuncio.id} ,data-entidad=${Tabla}, data-anuncio='siguiente'">Siguiente</label>
+					</div>
+					
+					<div class="row anuncioGeneric">
+						
+						<textarea th:rows="${Renglones}" cols="140" class="autoMargin textarea" disabled="disabled" 
+							th:text="${anuncio.codigo}"></textarea><br></br>
+						
+						<label class="autoMargin" th:text="${anuncio.textoAnuncio}"></label>
+						
+					</div>
 				</div>
-				
-				<div class="row anuncioGeneric">
-					
-					<textarea th:rows="${Renglones}" cols="140" class="autoMargin textarea" disabled="disabled" 
-						th:text="${anuncio.codigo}"></textarea><br></br>
-					
-					<label class="autoMargin" th:text="${anuncio.textoAnuncio}"></label>
-					
-				</div>
-
 		</div>
 	   
 	<!--Fin del fragment SectionAnuncio-->

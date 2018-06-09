@@ -53,7 +53,7 @@ li {
 	text-align: center;
 }
 
-#anuncio, #anuncio1, #anuncio2, #anuncio3, #anuncio4, #anuncio5 {
+#anuncio1, #anuncio2, #anuncio3, #anuncio4, #anuncio5 {
 	color: white;
 	text-align: center;
 	border: solid white;
@@ -147,7 +147,16 @@ li {
 	font-size: 110%;
 }
 
+#asunto {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
 
+.btnSiguiente {
+	
+}
 
 
 
