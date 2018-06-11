@@ -8,7 +8,7 @@
    
    <!--Primer fragment para enbeber en el tag Navbar-->
    
-   	<div th:fragment="NavbarDefault" class="bordes">
+   	<div th:fragment="NavbarDefault">
    		
 		<nav class="navbar navbar-expand-lg navbar-light navbarWhite">
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,17 +20,17 @@
 		    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 		      
 		      <li class="nav-item active">
-		        <a class="navbarWhite" href="/Home">Página Principal<span class="sr-only">(current)</span></a>  <!--  class="nav-link" -->
+		        <a class="navbarWhite btn-dark" href="/Home">Página Principal<span class="sr-only">(current)</span></a>  <!--  class="nav-link" -->
 		      </li>
 		      
 		      <li class="nav-item active">
-		        <a class="navbarWhite" href="/ProgramacionJava/1">Programación Java <span class="sr-only">(current)</span></a>
+		        <a class="navbarWhite  btn-dark" href="/ProgramacionJava/1">Programación Java <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="navbarWhite" href="/AplicacionesWeb/1">Aplicaciones Web</a>
+		        <a class="navbarWhite  btn-dark" href="/AplicacionesWeb/1">Aplicaciones Web</a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="navbarWhite" href="/Contacto">Contacto</a>
+		        <a class="navbarWhite btn-dark" href="/Contacto">Contacto</a>
 		      </li>
 		    </ul>
 		    <form class="form-inline my-2 my-lg-0" action="/ListarAnuncios">

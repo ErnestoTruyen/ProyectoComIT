@@ -8,7 +8,7 @@
 
     <!--Primer fragment para enbeber en el tag Secction-->
    
-    	<div th:fragment="SectionPaginaPrincipal" class="bordes">
+    	<div th:fragment="SectionPaginaPrincipal" class="section">
       		<div>
         		<h3 th:text="${pestania}"></h3>
           		<p>Presentación</p>
@@ -47,7 +47,7 @@
 
 	<!--Segundo fragment para enbeber en el tag Secction-->
 
-		<div th:fragment="SectionProgramacionJava" class="bordes">
+		<div th:fragment="SectionProgramacionJava">
 				<h3 th:text="${pestania}"></h3>
 				
 				<div class="row anuncioGeneric" th:each="anuncio : ${Anuncios}" id="anuncioResaltado">
@@ -83,7 +83,7 @@
 
 	<!--Tercer fragment para enbeber en el tag Secction-->
 
-		<div th:fragment="SectionProgramacionWeb" class="bordes">
+		<div th:fragment="SectionProgramacionWeb">
 				<h3 th:text="${pestania}"></h3>
 				
 				<div class="row anuncioGeneric" th:each="anuncio : ${Anuncios}">
@@ -118,7 +118,7 @@
 
 	<!--Cuarto fragment para enbeber en el tag Secction-->
 
-		<div th:fragment="SectionContacto" class="bordes">
+		<div th:fragment="SectionContacto">
 				<div class="row centrado">
 					<h3 th:text="${pestania}"></h3>
 					

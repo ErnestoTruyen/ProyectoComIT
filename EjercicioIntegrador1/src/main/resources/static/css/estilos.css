@@ -166,5 +166,11 @@ li {
 	background: white;
 }
 
+#footer {
+	background-color: black;
+}
 
+.section {
+	background-color: transparent;
+}
 
