@@ -657,6 +657,8 @@ public class ExampleController {
 			//creo un hascode para esta sesion y creo el usuario en la BBDD con sus datos
 			String codigo = UUID.randomUUID().toString();
 			sesion.setAttribute("codigo-autorizacion", codigo);
+			sesion.setAttribute("user", nombre);
+			sesion.setAttribute("password", contra);
 			Usuario user = new Usuario();
 			user.setActivo(true);
 			user.setHascode(codigo);
@@ -688,6 +690,8 @@ public class ExampleController {
 		Usuario usuario = userRepository.findByUser(user, pass); 
 		if(usuario!= null) {
 			sesion.setAttribute("codigo-autorizacion", usuario.getHascode());
+			sesion.setAttribute("user", user);
+			sesion.setAttribute("password", pass);
 			return "redirect:/Home";
 		}else {
 			
@@ -707,8 +711,54 @@ public class ExampleController {
 		
 		if(sesion.getAttribute("codigo-autorizacion") != null) {
 			sesion.setAttribute("codigo-autorizacion", null);
+			sesion.setAttribute("user", null);
+			sesion.setAttribute("password", null);
 		}
 		
+		return "redirect:/Home";
+	}
+	
+	
+	@RequestMapping("/Foro")
+	public String homeForo(Model modelo,HttpSession sesion) {
+		
+		//Atributos del modelo para mostrar o no los botones Login/Logout
+		
+		//Si no esta logueado pone login=true / logout=false
+		if(sesion.getAttribute("codigo-autorizacion") == null) {
+			modelo.addAttribute("login", true);
+			modelo.addAttribute("logout", false);
+		//Si esta logueado asigna login=false / logout=true
+		}else {
+			modelo.addAttribute("login", false);
+			modelo.addAttribute("logout", true);
+		}
+
+		
+		Usuario usuarioActual=null;;
+		
+		if(sesion.getAttribute("user") != null && sesion.getAttribute("password") != null) {
+		
+			usuarioActual = userRepository.findByUser(
+													(String)sesion.getAttribute("user"), 
+													(String)sesion.getAttribute("password")
+													 );
+		}
+		
+		if(usuarioActual != null && 
+				sesion.getAttribute("codigo-autorizacion").equals(usuarioActual.getHascode())) {
+			
+			//Cargo los atribitos del modelo con los Names de los html que quiero que se carguen en el layout
+			modelo.addAttribute("Header", "HeaderDefault");
+			modelo.addAttribute("Navbar", "NavbarDefault");
+			modelo.addAttribute("Section", "SectionForo");
+			modelo.addAttribute("Aside", "AsideDefault");
+			modelo.addAttribute("Footer", "FooterDefault");
+			
+			return "viewFragment";
+			
+		}
+	
 		return "redirect:/Home";
 	}
 	
