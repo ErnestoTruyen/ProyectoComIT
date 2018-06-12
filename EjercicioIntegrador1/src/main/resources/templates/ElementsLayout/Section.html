@@ -24,14 +24,14 @@
 				
 	  		<div class="row">
 	      		<div class="col-6">
-		      		<p>ULTIMOS ANUNCIOS JAVA POSTEADOS</p>
+		      		<h3>ULTIMOS ANUNCIOS JAVA POSTEADOS</h3>
 					
 		  	      	<div class="row nombreAnuncio" th:each="anuncio : ${AnunciosJava}">
 		 	        	<a th:href="${'/ShowView/java/' + anuncio.id}"><h4 th:text="${anuncio.titulo}"></h4></a>
 	              	</div>
 	      		</div>
 		  		<div class="col-6">
-		    		<p>ULTIMOS ANUNCIOS SPRING POSTEADOS</p>
+		    		<h3>ULTIMOS ANUNCIOS SPRING POSTEADOS</h3>
 						
 			  		<div class="row nombreAnuncio" th:each="anuncio : ${AnunciosSpring}">
 			    		<a th:href="${'/ShowView/spring/' + anuncio.id}"><h4 th:text="${anuncio.titulo}"></h4></a>

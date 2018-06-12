@@ -7,6 +7,7 @@ label {
 
 p.verde {
 	background-color: yellow;
+	
 }
 
 p.subrayado, span#spanId1 {
@@ -34,17 +35,31 @@ p#Titulo {
 	
 	padding: 0px 5px 0px 5px;
 	text-align: center;
+	
 }
 
 body {
-	background-image: url(https://www.rmol.cz/sites/default/files/main-images/matrix-434035_960_720.jpg);
+	background-image: url(https://c.pxhere.com/photos/2e/52/cloth_blue_modern_background_art_abstract_design_backdrop-1087225.jpg!d);
 	background-size: 100% 100%;
 	
 }
 
 h1,h2,h3,h4,h5,label,p,span {
+	color: black;
+	text-align: center;
+}
+.pFooter {
 	color: white;
 	text-align: center;
+}
+
+.aFooter {
+	color: white;
+	text-align: center;
+}
+
+#search {
+	color: black;
 }
 
 li {
@@ -54,9 +69,9 @@ li {
 }
 
 #anuncio1, #anuncio2, #anuncio3, #anuncio4, #anuncio5 {
-	color: white;
+	color: black;
 	text-align: center;
-	border: solid white;
+	border: solid black;
 	padding: 20px;
 }
 
@@ -68,16 +83,16 @@ li {
 }
 
 .bordes {
-	border: solid white;
+	border: solid transparent;
 }
 
 article {
-	border: solid white;
+	border: solid;
 	padding: 10px;
 }
 
 #enbed {
-	color: white;
+	color: black;
 	text-align: center;
 	border: solid white;
 	padding: 20px;
@@ -97,17 +112,17 @@ li {
 }
 
 .Resaltar {
-	color: white;
+	color: black;
 }
 
 .anuncioGeneric {
-	color: white;
+	color: black;
 	text-align: center;
 	padding: 20px;
 }
 
 .nombreAnuncio {
-	color: white;
+	color: black;
 	text-align: center;
 	display: inline;
 	padding: 20px;
@@ -128,7 +143,7 @@ li {
 	margin-right: 30%;
 	margin-top: 10%;
 	margin-bottom: 10%;
-	background-color: black;
+	background-image: url(https://c.pxhere.com/photos/2e/52/cloth_blue_modern_background_art_abstract_design_backdrop-1087225.jpg!d);
 	text-align: center;
 	
 }
@@ -148,10 +163,19 @@ li {
 }
 
 #asunto {
+	background-color: #E1F5A9;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: auto;
 	margin-bottom: auto;
+}
+
+#mensaje {
+	background-color: #E1F5A9;
+}
+
+.fondoClaro {
+	background-color: #E1F5A9;
 }
 
 .btnSiguiente {
@@ -163,7 +187,7 @@ li {
 }
 
 .lista {
-	background: white;
+	background: black;
 }
 
 #footer {
