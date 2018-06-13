@@ -218,18 +218,10 @@
 
 	<!--Sexto fragment para enbeber en el tag Secction-->
 
-		<div th:fragment="SectionFormularioUsuario" class="bordes">
-				<h3>Registro</h3>
+		<div th:fragment="SectionError" class="bordes">
+				<h3>Usuario no encontrado</h3>
 				
-				<div>
-					<form action="/CrearUsuario" method="post">
-						<label for="nombre">Nombre de usuario: </label>
-							<input type="text" name="nombre"></input>
-						<label for="contra">ContraseÃ±a: </label>	
-							<input type="password" name="contra"></input>
-						<input type="submit" name="enviar" value="Registrar"></input>
-					</form>
-				</div>
+				<p>El nombre de usuario y/o la contraseña no son correctos, vuelva a intentar</p>
 				
 		</div>
 	   

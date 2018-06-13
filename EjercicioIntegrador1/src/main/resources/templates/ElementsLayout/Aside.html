@@ -45,11 +45,48 @@
 									<div class="row">
 									  <div class="col">
 									    <div class="list-group" id="list-tab1" role="tablist">
-									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Java-list1" href="/Foro" role="tab" aria-controls="home">Java</a>
-									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Spring-list1" href="/Foro" role="tab" aria-controls="profile">Spring</a>
-									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Html-list1" href="/Foro" role="tab" aria-controls="messages">Html</a>
-									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Css-list1" href="/Foro" role="tab" aria-controls="settings">Css</a>
-									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Javascript-list1" href="/Foro" role="tab" aria-controls="settings">Javascript</a>
+									    
+									    
+									      <div th:if="${login} == false">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Java-list1" href="/Foro" role="tab" aria-controls="home">Java</a>
+									      </div>
+									      <div th:if="${login} == true">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Java-list1" data-toggle="modal" href="#Login" role="tab" aria-controls="home">Java</a>
+									      </div>
+									      
+									      
+									      <div th:if="${login} == false">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Spring-list1" href="/Foro" role="tab" aria-controls="profile">Spring</a>
+									      </div>
+									      <div th:if="${login} == true">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Spring-list1" data-toggle="modal" href="#Login" role="tab" aria-controls="profile">Spring</a>
+									      </div>
+									      
+									      
+									      <div th:if="${login} == false">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Html-list1" href="/Foro" role="tab" aria-controls="messages">Html</a>
+									      </div>
+									      <div th:if="${login} == true">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Html-list1" data-toggle="modal" href="#Login" role="tab" aria-controls="messages">Html</a>
+									      </div>
+									      
+									      
+									      <div th:if="${login} == false">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Css-list1" href="/Foro" role="tab" aria-controls="settings">Css</a>
+									      </div>
+									      <div th:if="${login} == true">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Css-list1" data-toggle="modal" href="#Login" role="tab" aria-controls="settings">Css</a>
+									      </div>
+									      
+									      
+									      <div th:if="${login} == false">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Javascript-list1" href="/Foro" role="tab" aria-controls="settings">Javascript</a>
+									      </div>
+									      <div th:if="${login} == true">
+									      	<a class="list-group-item list-group-item-action fondoClaro" id="list-Javascript-list1" data-toggle="modal" href="#Login" role="tab" aria-controls="settings">Javascript</a>
+									      </div>
+									      
+									      
 									    </div>
 									  </div>
 									</div> 

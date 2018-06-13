@@ -790,8 +790,21 @@ public class ExampleController {
 			sesion.setAttribute("codigo-autorizacion", usuario.getHascode());
 			sesion.setAttribute("user", user);
 			sesion.setAttribute("password", pass);
-			return "redirect:/Home";
+			return "redirect:/Foro";
 		}else {
+			
+			//Atributos del modelo para mostrar o no los botones Login/Logout
+			
+			//Si no esta logueado pone login=true / logout=false
+			if(sesion.getAttribute("codigo-autorizacion") == null) {
+				modelo.addAttribute("login", true);
+				modelo.addAttribute("logout", false);
+			//Si esta logueado asigna login=false / logout=true
+			}else {
+				modelo.addAttribute("login", false);
+				modelo.addAttribute("logout", true);
+			}			
+			
 			
 			//Cargo los atribitos del layout con los Names de los html que quiero que se carguen
 			modelo.addAttribute("Header", "HeaderDefault");
