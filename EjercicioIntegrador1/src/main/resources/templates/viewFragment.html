@@ -3,10 +3,12 @@
 <head>
 <title>ApuntesDesarrolloWeb</title>
 <meta charset="utf-8"></meta>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+
 <meta name="Apuntes desarrollo web y escritorio"
 	content="Apuntes varios sobre programacion web y de escritorio"></meta>
+	
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0"></meta>
 
 <!-- Aqui los link y scripts que pride la pagina de Bootstrap -->
 <!-- ======================================================== -->
@@ -58,35 +60,35 @@
 </head>
 
 <body class="container-fluid">
-	
-	<header th:replace="ElementsLayout/Header :: ${Header}">
-		
-	</header>
-	
-	
-	<nav th:replace="ElementsLayout/Navbar :: ${Navbar}" >
 
-	</nav>
-	
-	<div class="row">
-		<div class="col-9">
-			<section th:replace="ElementsLayout/Section :: ${Section}">
-			
-						
-			</section>
-		</div>
-	
-		<div class="col-3">
-			<aside th:replace="ElementsLayout/Aside :: ${Aside}">
-				
-			</aside>
-			
-		</div>
-	</div>		
-			
-	<footer th:replace="ElementsLayout/Footer :: ${Footer}">
 		
-	</footer>
+			<header th:replace="ElementsLayout/Header :: ${Header}">
+				
+			</header>
+		
+			
+			<nav th:replace="ElementsLayout/Navbar :: ${Navbar}" >
+		
+			</nav>
+			
+			<!-- 
+			<div class="row">
+				<div class="col-9">  -->
+					<section th:replace="ElementsLayout/Section :: ${Section}">
+					
+								
+					</section> <!-- 
+				</div>
+			
+				<div class="col-3">  -->
+					<!-- 
+				</div>
+			</div>		
+					 -->
+			<footer th:replace="ElementsLayout/Footer :: ${Footer}">
+				
+			</footer>
+
 
 </body>
 

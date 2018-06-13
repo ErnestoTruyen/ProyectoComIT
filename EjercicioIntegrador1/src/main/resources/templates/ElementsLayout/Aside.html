@@ -8,103 +8,136 @@
 
     <!--Primer fragment para enbeber en el tag Aside-->
     <div th:fragment="AsideDefault">
-    	
-    	<ul>
-    		<li>
-				<p>
-				  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
-				    Foros
-				  </button>
-				</p>
-				<div class="collapse" id="collapseExample1">
-				  
-					<div class="row">
-					  <div class="col">
-					    <div class="list-group" id="list-tab1" role="tablist">
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Java-list1" href="/Foro" role="tab" aria-controls="home">Java</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Spring-list1" href="/Foro" role="tab" aria-controls="profile">Spring</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Html-list1" href="/Foro" role="tab" aria-controls="messages">Html</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Css-list1" href="/Foro" role="tab" aria-controls="settings">Css</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Javascript-list1" href="/Foro" role="tab" aria-controls="settings">Javascript</a>
-					    </div>
+    	    	 
+	      			<nav role="navigation">
+					  <div id="menuToggle">
+					    <!--
+					    A fake / hidden checkbox is used as click reciever,
+					    so you can use the :checked selector on it.
+					    -->
+					    <input type="checkbox" />
+					    
+					    <!--
+					    Some spans to act as a hamburger.
+					    
+					    They are acting like a real hamburger,
+					    not that McDonalds stuff.
+					    -->
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					    
+					    <!--
+					    Too bad the menu has to be inside of the button
+					    but hey, it's pure CSS magic.
+					    -->
+					    <ul id="menu">
+					    
+					      <a href="#">
+				    		<li>
+								<p>
+								  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+								    Foros
+								  </button>
+								</p>
+								<div class="collapse" id="collapseExample1">
+								  
+									<div class="row">
+									  <div class="col">
+									    <div class="list-group" id="list-tab1" role="tablist">
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Java-list1" href="/Foro" role="tab" aria-controls="home">Java</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Spring-list1" href="/Foro" role="tab" aria-controls="profile">Spring</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Html-list1" href="/Foro" role="tab" aria-controls="messages">Html</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Css-list1" href="/Foro" role="tab" aria-controls="settings">Css</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Javascript-list1" href="/Foro" role="tab" aria-controls="settings">Javascript</a>
+									    </div>
+									  </div>
+									</div> 
+									
+								</div>    			
+				    		</li>					      	
+					      </a>
+					      
+					      <a href="#">
+				    		<li>
+								<p>
+								  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+								    Chats
+								  </button>
+								</p>
+								<div class="collapse" id="collapseExample2">
+								  
+									<div class="row">
+									  <div class="col">
+									    <div class="list-group" id="list-tab2" role="tablist">
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Java-list2" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Java</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Spring-list2" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Spring</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Html-list2" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Html</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Css-list2" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Css</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-Javascript-list2" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Javascript</a>
+									    </div>
+									  </div>
+									</div> 
+									
+								</div>    		   		
+				    		</li>
+					      
+					      </a>
+					      
+					      <a href="#">
+				    		<li>
+								<p>
+								  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+								    Documentos y PDFs
+								  </button>
+								</p>
+								<div class="collapse" id="collapseExample3">
+								  
+									<div class="row">
+									  <div class="col">
+									    <div class="list-group" id="list-tab3" role="tablist">
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Json</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Jpa</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">JDBC</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Varios</a>
+									    </div>
+									  </div>
+									  
+									</div>				  
+								  
+								</div>
+				    		</li>					      
+					      </a>
+					      
+					      <a href="#">
+				    		<li>
+								<p>
+								  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
+								    Cursos
+								  </button>
+								</p>
+								<div class="collapse" id="collapseExample4">
+								  
+									<div class="row">
+									  <div class="col">
+									    <div class="list-group" id="list-tab4" role="tablist">
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-home-list3" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Java desde cero</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-profile-list3" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Javascript desde cero</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-messages-list3" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Spring desde cero</a>
+									      <a class="list-group-item list-group-item-action fondoClaro" id="list-settings-list3" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Html y Css desde cero</a>
+									    </div>
+									  </div>
+									  
+									</div>				  
+								  
+								</div>
+				    		</li>					      
+					      </a>
+					      
+					    </ul>
 					  </div>
-					</div> 
-					
-				</div>    			
-    		</li>
-    		<li>
-				<p>
-				  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-				    Chats
-				  </button>
-				</p>
-				<div class="collapse" id="collapseExample2">
-				  
-					<div class="row">
-					  <div class="col">
-					    <div class="list-group" id="list-tab2" role="tablist">
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Java-list2" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Java</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Spring-list2" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Spring</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Html-list2" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Html</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Css-list2" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Css</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-Javascript-list2" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Javascript</a>
-					    </div>
-					  </div>
-					</div> 
-					
-				</div>    		   		
-    		</li>
-    		
-    		<li>
-				<p>
-				  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
-				    Documentos y PDFs
-				  </button>
-				</p>
-				<div class="collapse" id="collapseExample3">
-				  
-					<div class="row">
-					  <div class="col">
-					    <div class="list-group" id="list-tab3" role="tablist">
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Json</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Jpa</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">JDBC</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Varios</a>
-					    </div>
-					  </div>
-					  
-					</div>				  
-				  
-				</div>
-    		</li>
-
-    		<li>
-				<p>
-				  <button class="btn btn-primary btnRelleno" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
-				    Cursos
-				  </button>
-				</p>
-				<div class="collapse" id="collapseExample4">
-				  
-					<div class="row">
-					  <div class="col">
-					    <div class="list-group" id="list-tab4" role="tablist">
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-home-list3" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Java desde cero</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-profile-list3" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Javascript desde cero</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-messages-list3" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Spring desde cero</a>
-					      <a class="list-group-item list-group-item-action fondoClaro" id="list-settings-list3" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Html y Css desde cero</a>
-					    </div>
-					  </div>
-					  
-					</div>				  
-				  
-				</div>
-    		</li>
-
-    		
-    	</ul>
-    	
-    	
+					</nav>    	 
+    	 
     </div>
    
 	<!--Fin del primer fragment Aside-->

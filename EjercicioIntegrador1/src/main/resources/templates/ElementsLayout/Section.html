@@ -9,7 +9,14 @@
     <!--Primer fragment para enbeber en el tag Secction-->
    
     	<div th:fragment="SectionPaginaPrincipal" class="section">
-      		<div>
+      		<div>  
+      			<div class="row">
+	      			<aside th:replace="ElementsLayout/Aside :: ${Aside}">
+							
+					</aside>	
+
+      			</div>
+      		
         		<h3 th:text="${pestania}"></h3>
           		<p>Presentación</p>
 				<p>En este sitio se postean semanalmente anuncios relacionados con la programación de aplicaciones, tanto de escritorio
@@ -48,6 +55,14 @@
 	<!--Segundo fragment para enbeber en el tag Secction-->
 
 		<div th:fragment="SectionProgramacionJava">
+		
+      			<div class="row">
+	      			<aside th:replace="ElementsLayout/Aside :: ${Aside}">
+							
+					</aside>	
+
+      			</div>		
+		
 				<h3 th:text="${pestania}"></h3>
 				
 				<div class="row anuncioGeneric" th:each="anuncio : ${Anuncios}" id="anuncioResaltado">
@@ -59,19 +74,19 @@
 				<nav>
   					<ul class="pagination justify-content-center">
     					<li class="page-item" th:if="${mostrarAnterior}">
-     		 				<a  th:href="${url + (Pagina-1)}" tabindex="-1" >Anterior</a>
+     		 				<a  th:href="${url + (Pagina-1)}" tabindex="-1" class="btn btn-secondary">Anterior</a>
     					</li>
     					<li class="page-item" th:if="${mostrarPaginaBegin}">
-    						<a  th:href="${url + (Pagina-1)}" th:text="${Pagina-1}"><!-- aca va el numero de pagina decrementado en 1--></a>
+    						<a  th:href="${url + (Pagina-1)}" th:text="${Pagina-1}" class="btn btn-secondary"><!-- aca va el numero de pagina decrementado en 1--></a>
     					</li>
     					<li class="page-item active">
-      						<a  th:href="${url + Pagina}" th:text="${Pagina}" class="Resaltar"> <span class="sr-only">(current)</span></a>
+      						<a  th:href="${url + Pagina}" th:text="${Pagina}" class="Resaltar btn btn-primary"> <span class="sr-only">(current)</span></a>
     					</li>
     					<li class="page-item" th:if="${mostrarPaginaEnd}">
-    						<a  th:href="${url + (Pagina+1)}" th:text="${Pagina+1}"><!-- aca va el numero de pagina incrementado en 1 --></a>
+    						<a  th:href="${url + (Pagina+1)}" th:text="${Pagina+1}" class="btn btn-secondary"><!-- aca va el numero de pagina incrementado en 1 --></a>
     					</li>
     					<li class="page-item" th:if="${mostrarSiguiente}">
-      						<a  th:href="${url + (Pagina+1)}">Siguiente</a>
+      						<a  th:href="${url + (Pagina+1)}" class="btn btn-secondary">Siguiente</a>
     					</li>
   					</ul>
 				</nav>
@@ -84,6 +99,14 @@
 	<!--Tercer fragment para enbeber en el tag Secction-->
 
 		<div th:fragment="SectionProgramacionWeb">
+		
+      			<div class="row">
+	      			<aside th:replace="ElementsLayout/Aside :: ${Aside}">
+							
+					</aside>	
+
+      			</div>		
+		
 				<h3 th:text="${pestania}"></h3>
 				
 				<div class="row anuncioGeneric" th:each="anuncio : ${Anuncios}">
@@ -93,19 +116,19 @@
 				<nav>
   					<ul class="pagination justify-content-center">
     					<li class="page-item" th:if="${mostrarAnterior}">
-     		 				<a  th:href="${url + (Pagina-1)}" tabindex="-1" >Anterior</a>
+     		 				<a  th:href="${url + (Pagina-1)}" tabindex="-1" class="btn btn-secondary">Anterior</a>
     					</li>
     					<li class="page-item" th:if="${mostrarPaginaBegin}">
-    						<a  th:href="${url + (Pagina-1)}" th:text="${Pagina-1}"><!-- aca va el numero de pagina decrementado en 1--></a>
+    						<a  th:href="${url + (Pagina-1)}" th:text="${Pagina-1}" class="btn btn-secondary"><!-- aca va el numero de pagina decrementado en 1--></a>
     					</li>
     					<li class="page-item active">
-      						<a  th:href="${url + Pagina}" th:text="${Pagina}" class="Resaltar"> <span class="sr-only">(current)</span></a>
+      						<a  th:href="${url + Pagina}" th:text="${Pagina}" class="Resaltar btn btn-primary"> <span class="sr-only">(current)</span></a>
     					</li>
     					<li class="page-item" th:if="${mostrarPaginaEnd}">
-    						<a  th:href="${url + (Pagina+1)}" th:text="${Pagina+1}"><!-- aca va el numero de pagina incrementado en 1 --></a>
+    						<a  th:href="${url + (Pagina+1)}" th:text="${Pagina+1}" class="btn btn-secondary"><!-- aca va el numero de pagina incrementado en 1 --></a>
     					</li>
     					<li class="page-item" th:if="${mostrarSiguiente}">
-      						<a  th:href="${url + (Pagina+1)}">Siguiente</a>
+      						<a  th:href="${url + (Pagina+1)}" class="btn btn-secondary">Siguiente</a>
     					</li>
   					</ul>
 				</nav>
@@ -119,6 +142,14 @@
 	<!--Cuarto fragment para enbeber en el tag Secction-->
 
 		<div th:fragment="SectionContacto">
+		
+      			<div class="row">
+	      			<aside th:replace="ElementsLayout/Aside :: ${Aside}">
+							
+					</aside>	
+
+      			</div>		
+		
 				<div class="row centrado">
 					<h3 th:text="${pestania}"></h3>
 					
@@ -139,9 +170,9 @@
 						  <div>
 						    <p for="mensaje">Mensaje:</p>
 						    <textarea rows="10" cols="10" class="form-control" id="mensaje" name="mensaje"></textarea>
-						  </div>
+						  </div><br></br>
 						  <button type="submit" class="btn btn-primary">Enviar</button>
-						</form>
+						</form><br></br>
 					</div>
 					<div class="col-3">
 						
@@ -159,6 +190,8 @@
 	<!--Quinto fragment para enbeber en el tag Secction-->
 
 		<div th:fragment="SectionAnuncio" class="bordes">
+		
+				
 				
 				<div id="remplazar">
 					<div class="row anuncioGeneric">
@@ -204,6 +237,15 @@
 	<!--Septimo fragment para enbeber en el tag Secction-->
 
 		<div th:fragment="SectionForo" class="bordes">
+		
+      			<div class="row">
+	      			<aside th:replace="ElementsLayout/Aside :: ${Aside}">
+							
+					</aside>	
+
+      			</div>		
+		
+		
 				<h3>Foro de discución</h3>
 					<p>Sección en desarrollo, disculpe las molestias</p>
 		</div>
