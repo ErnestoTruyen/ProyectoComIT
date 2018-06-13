@@ -293,7 +293,13 @@ public class ExampleController {
 			}
 			
 			String Codigo = repositoryJava.findOne(id).getCodigo();
+			String texto = repositoryJava.findOne(id).getTextoAnuncio();
+			
 			int renglones=0;
+			int renglonesTexto = 0;
+			
+			//Contador de \n del campo codigo
+			
 			//validacion por si el campo codigo esta cargado como null
 			if(Codigo!=null) {
 				char[] codigoChanged = Codigo.toCharArray();
@@ -310,8 +316,29 @@ public class ExampleController {
 				renglones=3;
 				modelo.addAttribute("Renglones", renglones);
 			}
+			
+
+			//Contador de \n del campo textoAnuncio
+			
+			//validacion por si el campo textoAnuncio esta cargado como null
+			if(texto!=null) {
+				char[] codigoChanged = texto.toCharArray();
+				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo textoAnuncio
+				for(int i=0; i<codigoChanged.length; i++) {
+					if(codigoChanged[i]=='\n') {
+						renglonesTexto++;
+					}
+				}
+				
+				modelo.addAttribute("renglonesTexto", renglonesTexto+3);
+			}else {
+				renglonesTexto=3;
+				modelo.addAttribute("renglonesTexto", renglonesTexto);
+			}
 			//Atributo con el objeto AnuncioJava cargado
 			modelo.addAttribute("anuncio", repositoryJava.findOne(id));
+			
 			
 			
 		//---------------------------------
@@ -332,7 +359,14 @@ public class ExampleController {
 			
 			
 			String Codigo = repositorySpring.findOne(id).getCodigo();
+			
+			String texto = repositorySpring.findOne(id).getTextoAnuncio();
+			
 			int renglones=0;
+			int renglonesTexto = 0;
+			
+			//Contador de \n del campo codigo
+			
 			//validacion por si el campo codigo esta cargado como null
 			if(Codigo!=null) {
 				
@@ -350,6 +384,28 @@ public class ExampleController {
 				renglones=3;
 				modelo.addAttribute("Renglones", renglones);
 			}
+			
+			//Contador de \n del campo textoAnuncio
+			
+			//validacion por si el campo textoAnuncio esta cargado como null
+			if(texto!=null) {
+				char[] codigoChanged = texto.toCharArray();
+				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo textoAnuncio
+				for(int i=0; i<codigoChanged.length; i++) {
+					if(codigoChanged[i]=='\n') {
+						renglonesTexto++;
+					}
+				}
+				
+				modelo.addAttribute("renglonesTexto", renglonesTexto+3);
+			}else {
+				renglonesTexto=3;
+				modelo.addAttribute("renglonesTexto", renglonesTexto);
+			}
+
+			
+			
 			//Atributo con el objeto AnuncioSpring cargado
 			modelo.addAttribute("anuncio", repositorySpring.findOne(id));
 			
@@ -385,7 +441,8 @@ public class ExampleController {
 		
 		//VARIABLES Y OBJETOS
 		int renglones=1;
-		/*Esta variable es para contar cuantos enters tiene el campo codigo de un anuncio
+		int renglonesTexto=1;
+		/*Estas variables son para contar cuantos enters tiene los campo codigo/textoAnuncio de un anuncio
 		 * y de esa forma asignar ese valor al alto del textarea que lo va a mostrar*/
 		
 		int ID;
@@ -468,6 +525,26 @@ public class ExampleController {
 			}
 			
 			
+			String texto = repositoryJava.findOne(ID).getTextoAnuncio();
+			
+			//validacion por si el campo textoAnuncio esta cargado como null
+			if(texto!=null) {
+				char[] codigoChanged = texto.toCharArray();
+				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo textoAnuncio
+				for(int i=0; i<codigoChanged.length; i++) {
+					if(codigoChanged[i]=='\n') {
+						renglonesTexto++;
+					}
+				}
+				renglonesTexto = renglonesTexto + 2;
+				
+				
+			}else {
+				renglonesTexto=3;
+				
+			}
+			
 			//Obtengo el anuncio de la tabla Java con el ID mayuscula
 			anuncioJava = repositoryJava.findOne(ID);
 			
@@ -484,7 +561,7 @@ public class ExampleController {
 					"		  	<textarea rows=\""+renglones+"\" cols=\"140\" class=\"autoMargin textarea\" disabled=\"disabled\">"	+
 										  anuncioJava.getCodigo()+"</textarea><br></br>\r\n" + 
 					"			\r\n" + 
-					"			<label class=\"autoMargin\">"+anuncioJava.getTextoAnuncio()+"</label>\r\n" + 
+					"			<textarea class=\"autoMargin textareaTexto\" rows=\""+renglonesTexto+"\" cols=\"140\" disabled=\"disabled\">"+anuncioJava.getTextoAnuncio()+"</textarea>\r\n" + 
 					"			\r\n" + 
 					"		  </div>" +
 					"         </div>";
@@ -557,6 +634,27 @@ public class ExampleController {
 				
 			}
 			
+			
+			String texto = repositorySpring.findOne(ID).getTextoAnuncio();
+			
+			//validacion por si el campo textoAnuncio esta cargado como null
+			if(texto!=null) {
+				char[] codigoChanged = texto.toCharArray();
+				
+				//Aqui cargo renglones con la cantidad de enters que tiene el campo textoAnuncio
+				for(int i=0; i<codigoChanged.length; i++) {
+					if(codigoChanged[i]=='\n') {
+						renglonesTexto++;
+					}
+				}
+				renglonesTexto = renglonesTexto + 2;
+				
+				
+			}else {
+				renglonesTexto=3;
+				
+			}			
+			
 			//Obtengo el anuncio de la tabla Spring con el ID mayuscula
 			anuncioSpring = repositorySpring.findOne(ID);
 			
@@ -573,7 +671,7 @@ public class ExampleController {
 					"		  	<textarea rows=\""+renglones+"\" cols=\"140\" class=\"autoMargin textarea\" disabled=\"disabled\">"	+
 										  anuncioSpring.getCodigo() +"</textarea><br></br>\r\n" + 
 					"			\r\n" + 
-					"			<label class=\"autoMargin\">"+anuncioSpring.getTextoAnuncio()+"</label>\r\n" + 
+					"			<textarea class=\"autoMargin textareaTexto\" rows=\""+renglonesTexto+"\" cols=\"140\" disabled=\"disabled\">"+anuncioSpring.getTextoAnuncio()+"</textarea>\r\n" + 
 					"			\r\n" + 
 					"		  </div>" +
 					"         </div>";
