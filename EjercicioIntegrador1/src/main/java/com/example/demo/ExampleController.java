@@ -874,7 +874,54 @@ public class ExampleController {
 	}
 	
 	
+	//-----------------------------------------------------------------------ç
+	
+	@RequestMapping("/Chats")
+	public String homeChats(Model modelo,HttpSession sesion) {
+		
+		//Atributos del modelo para mostrar o no los botones Login/Logout
+		
+		//Si no esta logueado pone login=true / logout=false
+		if(sesion.getAttribute("codigo-autorizacion") == null) {
+			modelo.addAttribute("login", true);
+			modelo.addAttribute("logout", false);
+		//Si esta logueado asigna login=false / logout=true
+		}else {
+			modelo.addAttribute("login", false);
+			modelo.addAttribute("logout", true);
+		}
+
+		
+		Usuario usuarioActual=null;;
+		
+		if(sesion.getAttribute("user") != null && sesion.getAttribute("password") != null) {
+		
+			usuarioActual = userRepository.findByUser(
+													(String)sesion.getAttribute("user"), 
+													(String)sesion.getAttribute("password")
+													 );
+		}
+		
+		if(usuarioActual != null && 
+				sesion.getAttribute("codigo-autorizacion").equals(usuarioActual.getHascode())) {
+			
+			//Cargo los atribitos del modelo con los Names de los html que quiero que se carguen en el layout
+			modelo.addAttribute("Header", "HeaderDefault");
+			modelo.addAttribute("Navbar", "NavbarDefault");
+			modelo.addAttribute("Section", "SectionChats");
+			modelo.addAttribute("Aside", "AsideDefault");
+			modelo.addAttribute("Footer", "FooterDefault");
+			
+			return "viewFragment";
+			
+		}
+	
+		return "redirect:/Home";
+	}
+	
+	
 	//-----------------------------------------------------------------------
+	
 	//-----------------------------------------------------------------------
 	
 	//Url para enviar un Email
