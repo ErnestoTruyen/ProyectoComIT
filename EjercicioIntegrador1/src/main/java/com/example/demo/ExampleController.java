@@ -781,16 +781,22 @@ public class ExampleController {
 	}
 	
 	@RequestMapping("/LoguearUsuario")
-	public String loguerUsuario(HttpSession sesion,@RequestParam String user,@RequestParam String pass, Model modelo) {
+	public String loguerUsuario(HttpSession sesion,@RequestParam String user,@RequestParam String pass,@RequestParam String tema, Model modelo) {
 		
 				
 		
 		Usuario usuario = userRepository.findByUser(user, pass); 
 		if(usuario!= null) {
+			
+			
 			sesion.setAttribute("codigo-autorizacion", usuario.getHascode());
 			sesion.setAttribute("user", user);
 			sesion.setAttribute("password", pass);
-			return "redirect:/Foro";
+			if(tema.equals("")) {
+				return "redirect:/Home";
+			}else {
+				return "redirect:/Foro/" + tema;
+			}
 		}else {
 			
 			//Atributos del modelo para mostrar o no los botones Login/Logout
@@ -830,8 +836,8 @@ public class ExampleController {
 	}
 	
 	
-	@RequestMapping("/Foro")
-	public String homeForo(Model modelo,HttpSession sesion) {
+	@RequestMapping("/Foro/{tema}")
+	public String homeForo(Model modelo,HttpSession sesion,@PathVariable String tema) {
 		
 		//Atributos del modelo para mostrar o no los botones Login/Logout
 		
@@ -858,6 +864,11 @@ public class ExampleController {
 		
 		if(usuarioActual != null && 
 				sesion.getAttribute("codigo-autorizacion").equals(usuarioActual.getHascode())) {
+			
+			//Atributos para renderizar dinamicamente el foro
+			
+			modelo.addAttribute("tema", tema);
+			
 			
 			//Cargo los atribitos del modelo con los Names de los html que quiero que se carguen en el layout
 			modelo.addAttribute("Header", "HeaderDefault");

@@ -39,14 +39,17 @@ p#Titulo {
 }
 
 .body1 {
-	background-image: url(https://c.pxhere.com/photos/2e/52/cloth_blue_modern_background_art_abstract_design_backdrop-1087225.jpg!d);
+	
+	background-image: url(https://st2.depositphotos.com/4018531/8169/i/950/depositphotos_81697760-stock-photo-white-marble-patterned-texture-background.jpg);
 	background-size: 100% 100%;
 	font-family: verdana;
 	
 }
 
 .body2 {
-	background-image: url(https://c.pxhere.com/photos/2e/52/cloth_blue_modern_background_art_abstract_design_backdrop-1087225.jpg!d);
+	
+	
+	background-image: url(https://st2.depositphotos.com/4018531/8169/i/950/depositphotos_81697760-stock-photo-white-marble-patterned-texture-background.jpg);
 	
 	font-family: verdana;
 	
@@ -173,7 +176,8 @@ li {
 	margin-right: 10%;
 	margin-top: 10%;
 	margin-bottom: 15%;
-	background-image: url(https://c.pxhere.com/photos/2e/52/cloth_blue_modern_background_art_abstract_design_backdrop-1087225.jpg!d);
+	/*background-color: white;*/
+	background-image: url(https://st2.depositphotos.com/4018531/8169/i/950/depositphotos_81697760-stock-photo-white-marble-patterned-texture-background.jpg);
 	text-align: center;
 	
 	border-radius: 26px 26px 26px 26px;

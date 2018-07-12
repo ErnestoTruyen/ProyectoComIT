@@ -1,6 +1,47 @@
 
 
 $(document).ready( function(){
+	
+						//Variables globales,para diversos usos
+						var Tema= "";
+	
+	
+	                    //----------------------------------------------
+						
+						function setAttributeHidden(){
+							
+					    	   $(document).ready( function(){
+					    		   
+					    		   document.getElementById("hidden-variable").setAttribute("value",Tema);
+					    		   
+					    	   });
+					    }
+					       
+					    function opcionForo(id){
+					    	
+					    	   if(id == "list-Java-list1"){
+					    		   Tema = "Java";
+					    		   console.log(Tema);
+					    		   setAttributeHidden();
+					    	   }else if(id == "list-Spring-list1"){
+					    		   Tema = "Spring";
+					    		   setAttributeHidden();
+					    	   }else if(id == "list-Html-list1"){
+					    		   Tema = "HTML";
+					    		   setAttributeHidden();
+					    	   }else if(id == "list-Css-list1"){
+					    		   Tema = "Css";
+					    		   setAttributeHidden();
+					    	   }else if(id == "list-Javascript-list1"){
+					    		   Tema = "Javascript";
+					    		   setAttributeHidden();
+					    	   }else{
+					    		   console.log("Nuevo Tema.");
+					    	   }
+					    }
+						
+						//-----------------------------------------------
+						
 				       $("#textarea1").keyup( function(){
 			        						      var urlIncomplete = "/Buscar"
 				    						      $("#textarea1").autocomplete({
@@ -28,7 +69,32 @@ $(document).ready( function(){
 				    	   });
 				       });
 				       
-				       				       
+				       
+				       
+				       
+				          
+				       $('body').on('click', '#list-tab1 a', function(){
+				    		 console.log($(this).attr('id'));
+				    	     opcionForo($(this).attr('id'));
+				       });
+				    	
+				       
+				      /* 
+				       $("#list-Java-list1").click( function(){
+				    	   var Tema = "Java";
+				    	   $(document).ready( function(){
+				    		   document.getElementById("hidden-variable").setAttribute("value","java");
+				    	   });
+				       });
+				       
+				       $("#list-Spring-list1").click( function(){
+				    	   var Tema = "Spring";
+				    	   
+				       });*/
+				       
+				       
+				       
+				       
 				       
 				       
 });
