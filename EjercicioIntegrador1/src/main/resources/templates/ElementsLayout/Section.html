@@ -1,7 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    ...
+    <!-- Aqui los link y scripts que pride la pagina de Bootstrap -->
+	<!-- ======================================================== -->
+	
+		<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous"></link>
+		
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+		
+		<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+		
+		<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+		
+	<!-- ======================================================== -->
+		
+		
+	<!-- Estos son los links y scripts para el autocompletado del buscador -->
+	
+	<!-- ======================================================== -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>	
+		
+		<script src="https://code.jquery.com/jquery-1.12.4.js" ></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+		
+		
+	<!-- ======================================================== -->
+		
+	<!-- Estos son mis estilos personales -->
+	<link rel="stylesheet" type="text/css" href="/css/estilos.css"></link>
+	
+	
+	
+	
+	<script th:inline="javascript" src="/Javascript/Javascript.js"></script>
+
   </head>
   <body>
 
@@ -221,7 +265,7 @@
 		<div th:fragment="SectionError" class="bordes">
 				<h3>Usuario no encontrado</h3>
 				
-				<p>El nombre de usuario y/o la contrase馻 no son correctos, vuelva a intentar</p>
+				<p>El nombre de usuario y/o la contrase锟絘 no son correctos, vuelva a intentar</p>
 				
 		</div>
 	   
@@ -230,17 +274,111 @@
 	<!--Septimo fragment para enbeber en el tag Secction-->
 
 		<div th:fragment="SectionForo" class="bordes">
-		
+			
+			
+			
       			<div class="row">
 	      			<aside th:replace="ElementsLayout/Aside :: ${Aside}">
 							
 					</aside>	
 
       			</div>		
-		
-		
-				<h3 th:text="${'Foro de discuci贸n ' + tema }"></h3>
-				<p>Secci贸n en desarrollo, disculpe las molestias</p>
+			
+			<h3 th:text="${'Foro de discuci贸n ' + tema }" class="genericCenter"></h3>
+				
+			<div class="col">
+			
+			
+				<div class="row bordes enmarcado-externo">
+					<div class="col">
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>Top 5 Ultimos Posteos</label>
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+						 <script>
+							function loadPost(url,funcion){
+						    	   var xhttp = new XMLHttpRequest();
+						    	   xhttp.onreadystatechange = function(){
+						    		   console.log("Aca llego");
+						    		   if(xhttp.readyState == 4){
+						    		       if(xhttp.status == 200){
+							    			   nuevoPost(this);
+							    		   }   
+						    		   }
+						    	   }
+						    	   
+						    	   xhttp.open("GET",url,true);
+						    	   xhttp.send();
+						    	   
+						    }
+						       
+						    function nuevoPost(xhttp){
+						    	console.log(xhttp.responseText);
+						    	document.getElementById("newPost").innerHTML = xhttp.responseText;
+						    	
+						    }
+							</script> 
+							
+							
+							
+							<label id="newPost" onclick="loadPost('/Posteos',nuevoPost)">Crear nuevo Hilo</label>
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<form action="#" id="form-post" class="form-inline my-2 my-lg-0">
+							
+								<input class="form-control mr-sm-2 enmarcado-interno" type="search" id="input-post" name="postBuscado" placeholder="Buscar Post..." aria-label="Search"></input>
+								
+		      					<button class="btn btn-outline-warning my-2 my-sm-0" id="buscar-post" type="submit">Search</button>
+							
+								<!-- <span id="span-buscar" >Buscar:</span>
+								<input id="name-post" type="search" class="form-control enmarcado-interno"></input>
+								<button class="btn btn-outline-warning my-2 my-sm-0" id="buscar-post" type="submit">Search</button> -->
+							</form>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row bordes enmarcado-interno marco">
+					<div class="col bordes" style="background-color: white;">
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post</label>
+							<label style="text-align: rigth;">Fecha</label>
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post</label>
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post:</label>
+							
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post:</label>
+							
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post:</label>
+							
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post:</label>
+							
+						</div><div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post:</label>
+							
+						</div>
+						<div class="row borde-redondeado enmarcado-interno background-post">
+							<label>post:</label>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+					 
+				
+				
+						
 				
 				
 				
@@ -260,8 +398,12 @@
       			</div>		
 		
 		
-				<h3>Chats de Programaci髇</h3>
-					<p>Secci贸n en desarrollo, disculpe las molestias</p>
+				<h3>Chats de Programaci锟絥</h3>
+				<p>Secci贸n en desarrollo, disculpe las molestias</p>
+				
+				
+				
+				
 		</div>
 	   
 	<!--Fin del fragment SectionForo-->

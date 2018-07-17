@@ -1120,7 +1120,18 @@ public class ExampleController {
 	//---------------------------------------------------------------
 	
 	
-	
+	//---------------------------------------------------------------
+	@ResponseBody
+	@RequestMapping("/Posteos")
+	public String nuevoposteo() {
+		
+		String posteo = "<p>Sitio en desarrollo para la creacion de un nuevo posteo</p>";
+		
+		
+		return posteo;
+	}
+	//---------------------------------------------------------------
+		
 	
 }
 

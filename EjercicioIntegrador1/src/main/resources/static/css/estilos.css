@@ -111,7 +111,7 @@ li {
 }
 
 .bordes {
-	border: solid transparent;
+	border: solid;
 }
 
 article {
@@ -195,10 +195,54 @@ li {
 	border: 0px solid #000000;
 }
 
+.borde-redondeado {
+	
+	border-radius: 20px 20px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	-webkit-border-radius: 20px 20px 20px 20px;
+	border: 2px solid #000000;
+}
+
 .centrado {
 	border: none;
 	display: inline;
 	
+}
+
+.genericCenter{
+	text-align: center;
+	width: 100%;
+}
+
+.enmarcado-externo{
+	
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-top: 10%;
+	margin-bottom: 5%;
+	
+}
+
+.enmarcado-interno{
+	
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	
+}
+
+#form-post {
+	width: 100%;
+	container: fluid;
+}
+
+#input-post {
+	width: 80%;
+}
+
+.marco {
+	padding: 50px;
 }
 
 .navbarWhite {
@@ -241,7 +285,9 @@ li {
 	background-color: black;
 }
 
-
+.background-post {
+	background-color: #F4E9BF;
+}
 
 
 
@@ -409,8 +455,7 @@ a
 }
 
 
-
-
+/*----------------------------------------*/
 
 
 

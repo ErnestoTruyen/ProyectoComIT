@@ -8,6 +8,8 @@ $(document).ready( function(){
 	
 	                    //----------------------------------------------
 						
+						
+						//Helpers
 						function setAttributeHidden(){
 							
 					    	   $(document).ready( function(){
@@ -79,20 +81,25 @@ $(document).ready( function(){
 				       });
 				    	
 				       
-				      /* 
-				       $("#list-Java-list1").click( function(){
-				    	   var Tema = "Java";
-				    	   $(document).ready( function(){
-				    		   document.getElementById("hidden-variable").setAttribute("value","java");
-				    	   });
+				       $("#newPost").click(function loadPost(url,funcion){
+				    	   var xhttp = new XMLHttpRequest();
+				    	   xhttp.onreadystatechange = function(){
+				    		   console.log("Aca llego");
+				    		   if(this.readyState == 4 && this.status == 200){
+				    			   nuevoPost(this);
+				    		   }
+				    	   }
+				    	   
+				    	   xhttp.open("GET",url,true);
+				    	   xhttp.send();
+				    	   
 				       });
 				       
-				       $("#list-Spring-list1").click( function(){
-				    	   var Tema = "Spring";
-				    	   
-				       });*/
-				       
-				       
+				       function nuevoPost(xhttp){
+				    	   console.log("Aca llego2");
+				    	   document.getElementById("newPost").innerHtml = xhttp.responseText;
+				       }
+				    
 				       
 				       
 				       
