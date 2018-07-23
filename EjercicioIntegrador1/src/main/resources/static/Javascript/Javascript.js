@@ -80,26 +80,68 @@ $(document).ready( function(){
 				    	     opcionForo($(this).attr('id'));
 				       });
 				    	
+				       $("#crearHilo").click(function(){
+				    	   var datos = document.getElementsByClassName("formulario");
+				    	   var xhttp = new XMLHttpRequest();
+				    	   
+				    	   var titulo = datos[0].value;
+				    	   var texto = datos[1].value;
+				    	   var tema = datos[2].value;
+				    	   console.log(titulo);
+				    	   
+				    	   xhttp.onreadystatechange = function(){
+				    		   console.log("entro al javascript");
+				    		   
+				    		   if(this.readyState == 4 && this.status == 200){
+				    			   console.log("Carga satisfactoria.");
+				    			   
+				    		   }
+				    	   }
+				    	   xhttp.open("GET","/Posteos/nuevo-hilo?titulo="+titulo+"&texto="+texto+"&tema="+tema,true);
+				    	   xhttp.send();
+				       });
 				       
-				       $("#newPost").click(function loadPost(url,funcion){
+				       $("#lastFive").click(function(){
+				    	   
+				    	   var tema = document.getElementById("temaLastFive").value;
+				    	   console.log(tema);
+				    	   debugger;
 				    	   var xhttp = new XMLHttpRequest();
 				    	   xhttp.onreadystatechange = function(){
-				    		   console.log("Aca llego");
+				    		   
+				    		   if(this.readyState == 4 && this.status == 200){
+				    			   console.log(this.responseText);
+				    			   
+				    		   }
+				    	   }
+				    	   xhttp.open("GET","/Posteos/LastFive?tema="+tema,true);
+				    	   xhttp.send();
+				       });
+				       /*$(".newPost").click(function loadPost(){
+				    	   
+				    	   var xhttp = new XMLHttpRequest();
+				    	   var TemaForo = document.getElementsByClassName("newPost");
+				    	   var partDinamic = TemaForo[0].getAttribute("id");
+				    	   console.log(partDinamic);
+				    	   
+				    	   xhttp.open("GET","/Posteos/nuevo-hilo/" + partDinamic,true);
+				    	   xhttp.send();
+				    	   
+				    	   xhttp.onreadystatechange = function(){
+				    		   console.log("entro al javascript");
 				    		   if(this.readyState == 4 && this.status == 200){
 				    			   nuevoPost(this);
 				    		   }
 				    	   }
 				    	   
-				    	   xhttp.open("GET",url,true);
-				    	   xhttp.send();
 				    	   
 				       });
 				       
 				       function nuevoPost(xhttp){
-				    	   console.log("Aca llego2");
-				    	   document.getElementById("newPost").innerHtml = xhttp.responseText;
+				    	   console.log(xhttp.responseText);
+				    	   document.getElementById("section-foro1").innerHTML = xhttp.responseText;
 				       }
-				    
+				       */
 				       
 				       
 				       

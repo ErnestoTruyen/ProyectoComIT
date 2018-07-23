@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -32,6 +33,8 @@ public class ExampleController {
 	private RootRepository repositoryRoot;
 	@Autowired
 	private RepositoryUsers userRepository;
+	@Autowired
+	private PosteosRepository postRepository;
 	@Autowired
 	private Environment env;
 	
@@ -1122,19 +1125,36 @@ public class ExampleController {
 	
 	//---------------------------------------------------------------
 	@ResponseBody
-	@RequestMapping("/Posteos")
-	public String nuevoposteo() {
+	@RequestMapping("/Posteos/nuevo-hilo")
+	public String nuevoposteo(@RequestParam String titulo, 
+							  @RequestParam String texto,
+							  @RequestParam String tema) {
 		
-		String posteo = "<p>Sitio en desarrollo para la creacion de un nuevo posteo</p>";
+		Posteos nuevoPost = new Posteos();
+		nuevoPost.setTema(tema);
+		nuevoPost.setTitulo(titulo);
+		nuevoPost.setTexto(texto);
 		
+		postRepository.save(nuevoPost);
 		
-		return posteo;
+		return "";
 	}
 	//---------------------------------------------------------------
+	
+	//---------------------------------------------------------------
+		@ResponseBody
+		@RequestMapping("/Posteos/LastFive")
+		public ArrayList<String> ultimos5(@RequestParam String tema) {
+			
+			ArrayList<String> lista = postRepository.buscarPorUltimos5(tema);
+			System.out.println(lista);
+			
+			return lista;
+		}
+		//---------------------------------------------------------------
 		
 	
 }
-
 
 
 

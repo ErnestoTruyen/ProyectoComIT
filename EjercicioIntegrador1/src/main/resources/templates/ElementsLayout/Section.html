@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+		
   </head>
   <body>
 
@@ -242,93 +242,74 @@
 			
 			<h3 th:text="${'Foro de discución ' + tema }" class="genericCenter"></h3>
 				
-			<div class="col">
+			<div class="col" id="section-foro1">
 			
 			
-				<div class="row bordes enmarcado-externo">
-					<div class="col">
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>Top 5 Ultimos Posteos</label>
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
-						 <script>
-							function loadPost(url,funcion){
-						    	   var xhttp = new XMLHttpRequest();
-						    	   xhttp.onreadystatechange = function(){
-						    		   console.log("Aca llego");
-						    		   if(xhttp.readyState == 4){
-						    		       if(xhttp.status == 200){
-							    			   nuevoPost(this);
-							    		   }   
-						    		   }
-						    	   }
-						    	   
-						    	   xhttp.open("GET",url,true);
-						    	   xhttp.send();
-						    	   
-						    }
-						       
-						    function nuevoPost(xhttp){
-						    	console.log(xhttp.responseText);
-						    	document.getElementById("newPost").innerHTML = xhttp.responseText;
-						    	
-						    }
-							</script> 
-							
-							
-							
-							<label id="newPost" onclick="loadPost('/Posteos',nuevoPost)">Crear nuevo Hilo</label>
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
+		      
+				
+				
+				<div class="panel-group" id="accordion" style="margin-top: 10%;">
+				  <div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title borde-redondeado">
+				        <a id="lastFive" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+				        Top 5 Ultimos Posteos</a>
+				        <input type="hidden" id="temaLastFive" th:value="${tema}"></input>
+				      </h4>
+				    </div>
+				    <div id="collapse1" class="panel-collapse collapse in">
+				      <div class="row borde-redondeado enmarcado-interno background-post panel-body">
+					  	<label></label>
+					  </div>
+					  
+				    </div>
+				  </div>
+				  <br></br>
+				  <div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title borde-redondeado">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+				        Crear Nuevo Hilo</a>
+				      </h4>
+				    </div>
+				    <div id="collapse2" class="panel-collapse collapse">
+				      <div class="borde-redondeado enmarcado-interno background-post panel-body">
+					  	<form class="form-group">
+					  	  <label>Tema: </label>
+						  <input class="borde-redondeado formulario" for="textoNewHilo" type="text" focus="auto" name="temaHiloNuevo"></input>
+						  <input type="submit" style="float: right; margin:1%;" id="crearHilo"></input>
+						  <textarea class="form-control borde-redondeado formulario" rows="8" id="textoNewHilo" name="textoHiloNuevo"></textarea>
+						  <input type="hidden" name="hidden" th:value="${tema}" class="formulario"></input>
+						</form>
+					  </div>
+				    </div>
+				  </div>
+				  <br></br>
+				  <div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title borde-redondeado">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+				        Buscar...</a>
+				      </h4>
+				    </div>
+				    <div id="collapse3" class="panel-collapse collapse">
+				      <div class="row borde-redondeado enmarcado-interno background-post panel-body">
 							<form action="#" id="form-post" class="form-inline my-2 my-lg-0">
 							
 								<input class="form-control mr-sm-2 enmarcado-interno" type="search" id="input-post" name="postBuscado" placeholder="Buscar Post..." aria-label="Search"></input>
 								
 		      					<button class="btn btn-outline-warning my-2 my-sm-0" id="buscar-post" type="submit">Search</button>
 							
-								<!-- <span id="span-buscar" >Buscar:</span>
-								<input id="name-post" type="search" class="form-control enmarcado-interno"></input>
-								<button class="btn btn-outline-warning my-2 my-sm-0" id="buscar-post" type="submit">Search</button> -->
+								
 							</form>
 						</div>
-					</div>
+				    </div>
+				  </div>
+				  <br></br>
 				</div>
+			  
+			  
 				
-				<div class="row bordes enmarcado-interno marco">
-					<div class="col bordes" style="background-color: white;">
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post</label>
-							<label style="text-align: rigth;">Fecha</label>
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post</label>
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post:</label>
-							
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post:</label>
-							
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post:</label>
-							
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post:</label>
-							
-						</div><div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post:</label>
-							
-						</div>
-						<div class="row borde-redondeado enmarcado-interno background-post">
-							<label>post:</label>
-							
-						</div>
-						
-					</div>
-				</div>
 			</div>
 			
 					 
