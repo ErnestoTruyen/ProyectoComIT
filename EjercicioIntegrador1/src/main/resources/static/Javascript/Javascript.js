@@ -116,7 +116,7 @@ $(document).ready( function(){
 				    			   console.log(longitud);
 				    			   for(i = 0; i<longitud; i++){
 				    				   if(arr[i] != "[" && arr[i] != "]" && arr[i] != "," && longitud != 1){
-				    					   $( ".posteo" ).append( "<div class='row borde-redondeado enmarcado-interno background-post panel-body'>"+arr[i]+"</div>" );
+				    					   $( ".posteo" ).append( "<a href='#'><div class='row borde-redondeado enmarcado-interno background-post panel-body'>"+arr[i]+"</div></a>" );
 				    				   }
 				    			   }
 				    		   }
