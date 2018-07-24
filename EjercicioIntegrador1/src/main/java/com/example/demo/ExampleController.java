@@ -1147,7 +1147,11 @@ public class ExampleController {
 		public ArrayList<String> ultimos5(@RequestParam String tema) {
 			
 			ArrayList<String> lista = postRepository.buscarPorUltimos5(tema);
-			System.out.println(lista);
+			
+			//Creacion del objeto Gson para "Castear" el ArrayList arrayJava en un string con formato Json 
+			//Gson gson = new Gson();
+			//String respuesta = gson.toJson(lista);
+			
 			
 			return lista;
 		}

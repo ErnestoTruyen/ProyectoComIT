@@ -87,7 +87,7 @@ $(document).ready( function(){
 				    	   var titulo = datos[0].value;
 				    	   var texto = datos[1].value;
 				    	   var tema = datos[2].value;
-				    	   console.log(titulo);
+				    	   console.log(tema);
 				    	   
 				    	   xhttp.onreadystatechange = function(){
 				    		   console.log("entro al javascript");
@@ -101,17 +101,24 @@ $(document).ready( function(){
 				    	   xhttp.send();
 				       });
 				       
-				       $("#lastFive").click(function(){
+				       $("#lastFive").ready(function(){
 				    	   
 				    	   var tema = document.getElementById("temaLastFive").value;
-				    	   console.log(tema);
-				    	   debugger;
+				    	   
 				    	   var xhttp = new XMLHttpRequest();
 				    	   xhttp.onreadystatechange = function(){
 				    		   
 				    		   if(this.readyState == 4 && this.status == 200){
-				    			   console.log(this.responseText);
+				    			   var arr = this.responseText.split('"');
+				    			   console.log(arr);
 				    			   
+				    			   var longitud = arr.length;
+				    			   console.log(longitud);
+				    			   for(i = 0; i<longitud; i++){
+				    				   if(arr[i] != "[" && arr[i] != "]" && arr[i] != "," && longitud != 1){
+				    					   $( ".posteo" ).append( "<div class='row borde-redondeado enmarcado-interno background-post panel-body'>"+arr[i]+"</div>" );
+				    				   }
+				    			   }
 				    		   }
 				    	   }
 				    	   xhttp.open("GET","/Posteos/LastFive?tema="+tema,true);
