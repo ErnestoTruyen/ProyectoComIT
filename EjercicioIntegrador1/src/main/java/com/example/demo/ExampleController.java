@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 
 @Controller
 public class ExampleController {
@@ -422,6 +424,9 @@ public class ExampleController {
 		
 	}
 	//-----------------------------------------------------
+	//-----------------------------------------------------
+	
+	//--------------------Seccion AJAX---------------------
 	
 	//-----------------------------------------------------
 	//-----------------------------------------------------
@@ -687,6 +692,71 @@ public class ExampleController {
 		}
 	
 	}
+	
+	//---------------------------------------------------------------
+	@ResponseBody
+	@RequestMapping("/Posteos/nuevo-hilo")
+	public String nuevoposteo(@RequestParam String titulo, 
+							  @RequestParam String texto,
+							  @RequestParam String tema) {
+		
+		Posteos nuevoPost = new Posteos();
+		nuevoPost.setTema(tema);
+		nuevoPost.setTitulo(titulo);
+		nuevoPost.setTexto(texto);
+		
+		postRepository.save(nuevoPost);
+		
+		return "";
+	}
+	//---------------------------------------------------------------
+	
+	//---------------------------------------------------------------
+	@ResponseBody
+	@RequestMapping("/Posteos/LastFive")
+	public String ultimos5(@RequestParam String tema) {
+		
+		
+		ArrayList<Posteos> lista = postRepository.buscarPorUltimos5(tema);
+		
+			//Creacion del objeto Gson para "Castear" el ArrayList arrayJava en un string con formato Json 
+		Gson gson = new Gson();
+		String respuesta = gson.toJson(lista);
+		
+		
+			
+		return respuesta;
+	}
+	
+	//---------------------------------------------------------------
+	//@ResponseBody
+	@RequestMapping("/BuscarPosteoPorId/{id}")
+	public String findPosteoById(@PathVariable int id,Model modelo) {
+		
+		Posteos posteo = postRepository.findOne(id);
+			
+		if(posteo != null) {
+			
+			modelo.addAttribute("titulo", posteo.getTitulo());
+			modelo.addAttribute("texto", posteo.getTexto());
+			modelo.addAttribute("fecha", posteo.getRegistrationDate().toString().substring(0, 11));
+			
+			return "Foros/SeccionMostrarPost";
+				
+		}else {
+			modelo.addAttribute("texto", "No se encontro el posteo");
+			
+			return "Foros/SeccionMostrarPost";
+		}
+		
+		
+	}
+	//---------------------------------------------------------------
+	//-----------------------------------------------------
+	//-----------------------------------------------------
+	
+	//-----------------Fin AJAX----------------------------
+	
 	//-----------------------------------------------------
 	//-----------------------------------------------------
 
@@ -960,6 +1030,7 @@ public class ExampleController {
 	}
 	
 	
+	
 	//CRUD DE LA  BBDD
 	
 	//-----------------------------------------------------------------------
@@ -1123,39 +1194,9 @@ public class ExampleController {
 	//---------------------------------------------------------------
 	
 	
-	//---------------------------------------------------------------
-	@ResponseBody
-	@RequestMapping("/Posteos/nuevo-hilo")
-	public String nuevoposteo(@RequestParam String titulo, 
-							  @RequestParam String texto,
-							  @RequestParam String tema) {
-		
-		Posteos nuevoPost = new Posteos();
-		nuevoPost.setTema(tema);
-		nuevoPost.setTitulo(titulo);
-		nuevoPost.setTexto(texto);
-		
-		postRepository.save(nuevoPost);
-		
-		return "";
-	}
-	//---------------------------------------------------------------
 	
-	//---------------------------------------------------------------
-		@ResponseBody
-		@RequestMapping("/Posteos/LastFive")
-		public ArrayList<String> ultimos5(@RequestParam String tema) {
-			
-			ArrayList<String> lista = postRepository.buscarPorUltimos5(tema);
-			
-			//Creacion del objeto Gson para "Castear" el ArrayList arrayJava en un string con formato Json 
-			//Gson gson = new Gson();
-			//String respuesta = gson.toJson(lista);
-			
-			
-			return lista;
-		}
-		//---------------------------------------------------------------
+	
+	
 		
 	
 }

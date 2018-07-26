@@ -80,6 +80,7 @@ $(document).ready( function(){
 				    	     opcionForo($(this).attr('id'));
 				       });
 				    	
+				       
 				       $("#crearHilo").click(function(){
 				    	   var datos = document.getElementsByClassName("formulario");
 				    	   var xhttp = new XMLHttpRequest();
@@ -104,20 +105,23 @@ $(document).ready( function(){
 				       $("#lastFive").ready(function(){
 				    	   
 				    	   var tema = document.getElementById("temaLastFive").value;
+				    	   console.log(tema);
 				    	   
 				    	   var xhttp = new XMLHttpRequest();
 				    	   xhttp.onreadystatechange = function(){
 				    		   
 				    		   if(this.readyState == 4 && this.status == 200){
-				    			   var arr = this.responseText.split('"');
-				    			   console.log(arr);
+				    			   //------------------------------------------------------
+				    			   var arreglo = JSON.parse(this.responseText);
 				    			   
-				    			   var longitud = arr.length;
-				    			   console.log(longitud);
-				    			   for(i = 0; i<longitud; i++){
-				    				   if(arr[i] != "[" && arr[i] != "]" && arr[i] != "," && longitud != 1){
-				    					   $( ".posteo" ).append( "<a href='#'><div class='row borde-redondeado enmarcado-interno background-post panel-body'>"+arr[i]+"</div></a>" );
-				    				   }
+				    			   //------------------------------------------------------
+				    			   
+				    			   var longitud2 = arreglo.length;
+				    			  
+				    			   for(i = 0; i<longitud2; i++){
+				    				   
+				    				   $( ".posteo" ).append( "<a href='#' id='"+arreglo[i].id+"'><div class='row borde-redondeado enmarcado-interno background-post panel-body'>"+arreglo[i].titulo+"</div></a>" );
+				    				   
 				    			   }
 				    		   }
 				    	   }
@@ -150,6 +154,28 @@ $(document).ready( function(){
 				       }
 				       */
 				       
+				       $('.mostrarPosteo').click( function(){
+				    	   
+				    	   var hijo = $(".posteo").children('a')[2];
+				    	   //console.log(hijo.attr("id"));
+				    	   
+				    	   //Esto esta mal, dado que siempre devuelve el mismo id 
+				    	   var id = $(".posteo").children('a').attr("id");
+				    	   console.log(id);
+				    	   $.ajax({
+				    		   url: "/BuscarPosteoPorId/" + id
+				    	   }).done(function(respuesta){
+				    		   console.log("OK");
+				    		   
+				    		   //------------------------------------------------------
+			    			   //var postJson = JSON.parse(respuesta);
+			    			   //console.log(postJson);
+			    			   //------------------------------------------------------
+				    		   //var id = postJson.id;
+				    		   $(respuesta).replaceAll( "#section-foro1" );
+				    		   
+				    	   });
+				       });
 				       
 				       
 				       

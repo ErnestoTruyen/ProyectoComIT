@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface PosteosRepository extends JpaRepository<Posteos, Integer>{
 
 	
-	@Query(value = "SELECT titulo FROM posteos WHERE tema=?1 ORDER BY id DESC limit 5", nativeQuery = true)
-	ArrayList<String> buscarPorUltimos5(String tema);
+	@Query(value = "SELECT * FROM posteos WHERE tema=?1 ORDER BY id DESC limit 5", nativeQuery = true)
+	ArrayList<Posteos> buscarPorUltimos5(String tema);
 	
 	
 }

@@ -26,8 +26,6 @@ public class Usuario {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Posteos> posteos;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Comentarios> comentarios;
 	
 	protected Usuario() {
 		
