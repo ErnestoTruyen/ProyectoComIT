@@ -120,7 +120,7 @@ $(document).ready( function(){
 				    			  
 				    			   for(i = 0; i<longitud2; i++){
 				    				   
-				    				   $( ".posteo" ).append( "<a href='#' id='"+arreglo[i].id+"'><div class='row borde-redondeado enmarcado-interno background-post panel-body'>"+arreglo[i].titulo+"</div></a>" );
+				    				   $( ".posteo" ).append( "<a href='#'><div id='"+arreglo[i].id+"' class='posteoAjax1 row borde-redondeado enmarcado-interno background-post panel-body'>"+arreglo[i].titulo+"</div></a>" );
 				    				   
 				    			   }
 				    		   }
@@ -128,50 +128,20 @@ $(document).ready( function(){
 				    	   xhttp.open("GET","/Posteos/LastFive?tema="+tema,true);
 				    	   xhttp.send();
 				       });
-				       /*$(".newPost").click(function loadPost(){
-				    	   
-				    	   var xhttp = new XMLHttpRequest();
-				    	   var TemaForo = document.getElementsByClassName("newPost");
-				    	   var partDinamic = TemaForo[0].getAttribute("id");
-				    	   console.log(partDinamic);
-				    	   
-				    	   xhttp.open("GET","/Posteos/nuevo-hilo/" + partDinamic,true);
-				    	   xhttp.send();
-				    	   
-				    	   xhttp.onreadystatechange = function(){
-				    		   console.log("entro al javascript");
-				    		   if(this.readyState == 4 && this.status == 200){
-				    			   nuevoPost(this);
-				    		   }
-				    	   }
-				    	   
-				    	   
-				       });
-				       
-				       function nuevoPost(xhttp){
-				    	   console.log(xhttp.responseText);
-				    	   document.getElementById("section-foro1").innerHTML = xhttp.responseText;
-				       }
-				       */
-				       
-				       $('.mostrarPosteo').click( function(){
-				    	   
-				    	   var hijo = $(".posteo").children('a')[2];
-				    	   //console.log(hijo.attr("id"));
-				    	   
-				    	   //Esto esta mal, dado que siempre devuelve el mismo id 
-				    	   var id = $(".posteo").children('a').attr("id");
+				    
+				       // .mostrarPosteo-->clase del contenedor padre
+				       // .on--> Metodo de JQuery para escuchar eventos de elementos que se cargan dinamicamente
+				       // click--> evento a escuchar por la funcion
+				       // .posteoAjax1--> clase de los elementos hijos que escuchan el evento click
+				       $('.mostrarPosteo').on('click','.posteoAjax1', function(){
+				    	    
+				    	   var id = $(this).attr("id");
 				    	   console.log(id);
 				    	   $.ajax({
 				    		   url: "/BuscarPosteoPorId/" + id
 				    	   }).done(function(respuesta){
 				    		   console.log("OK");
-				    		   
-				    		   //------------------------------------------------------
-			    			   //var postJson = JSON.parse(respuesta);
-			    			   //console.log(postJson);
-			    			   //------------------------------------------------------
-				    		   //var id = postJson.id;
+				    		  
 				    		   $(respuesta).replaceAll( "#section-foro1" );
 				    		   
 				    	   });
