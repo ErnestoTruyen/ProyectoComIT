@@ -105,7 +105,6 @@ $(document).ready( function(){
 				       $("#lastFive").ready(function(){
 				    	   
 				    	   var tema = document.getElementById("temaLastFive").value;
-				    	   console.log(tema);
 				    	   
 				    	   var xhttp = new XMLHttpRequest();
 				    	   xhttp.onreadystatechange = function(){
@@ -120,7 +119,7 @@ $(document).ready( function(){
 				    			  
 				    			   for(i = 0; i<longitud2; i++){
 				    				   
-				    				   $( ".posteo" ).append( "<a href='#'><div id='"+arreglo[i].id+"' class='posteoAjax1 row borde-redondeado enmarcado-interno background-post panel-body'>"+arreglo[i].titulo+"</div></a>" );
+				    				   $( ".posteo" ).append( "<a href='#'><div id='"+arreglo[i].id+"' class='posteoAjax1 row enmarcado-interno background-post panel-body'>"+arreglo[i].titulo+"</div></a>" );
 				    				   
 				    			   }
 				    		   }
@@ -146,6 +145,53 @@ $(document).ready( function(){
 				    		   
 				    	   });
 				       });
+				       
+				       
+				       //Ajax de ejemplo general(nota personal)
+				       //Ajax que carga los primeros 10 posteos al ingresar a un foro
+				       //Cuando la pagina esta cargada, se solicitan los posteoas a traves de ajax y se reemplazan
+				       // en el div posteoPaginacionReemplazo1
+				       $("#posteosPaginacion").ready(function(){
+				    	   
+				    	   var tema = document.getElementById("temaPosteo").value;
+				    	   Tema = tema;
+				    	   
+				    	   var primerPagina = 0;
+				    	   
+				    	   $.ajax({
+				    		   url: "/Posteos/Paginacion/" + tema + "/" + primerPagina
+				    	   }).done(function(respuesta){
+				    		   
+				    		  
+				    		   $(respuesta).replaceAll( "#posteoPaginacionReemplazo1" );
+				    		   
+				    	   });
+				       });
+				       
+				       // .posteoAjax-->clase del contenedor padre
+				       // .on--> Metodo de JQuery para escuchar eventos de elementos que se cargan dinamicamente
+				       // click--> evento a escuchar por la funcion
+				       // .otroPost--> clase de los elementos hijos que escuchan el evento click
+				       
+				       //Ajax que reemplaza el div posteoPaginacionReemplazo1 por los posteos de la pagina solicitada
+				       //desde los botones de paginacion
+				       $('#section-foro1').on('click','.otroPost', function(){
+				    	    
+				    	   var tema = document.getElementById("temaPosteo").value;
+				    	   
+				    	   var hidden= $(this);
+				    	   
+				    	   var pagina = hidden.attr("value");
+				    	   
+				    	   $.ajax({
+				    		   url: "/Posteos/Paginacion/" + tema + "/" + pagina
+				    	   }).done(function(respuesta){
+				    		   
+				    		   $(respuesta).replaceAll( "#posteoPaginacionReemplazo1" );
+				    		   
+				    	   });
+				       });
+				       
 				       
 				       
 				       

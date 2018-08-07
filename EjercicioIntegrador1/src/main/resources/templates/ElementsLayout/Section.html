@@ -251,7 +251,7 @@
 				<div class="panel-group" id="accordion" style="margin-top: 10%;">
 				  <div class="panel panel-default">
 				    <div class="panel-heading">
-				      <h4 class="panel-title borde-redondeado">
+				      <h4 class="panel-title">
 				        <a id="lastFive" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
 				        Top 5 Ultimos Posteos</a>
 				        <input type="hidden" id="temaLastFive" th:value="${tema}"></input>
@@ -264,18 +264,18 @@
 				  <br></br>
 				  <div class="panel panel-default">
 				    <div class="panel-heading">
-				      <h4 class="panel-title borde-redondeado">
+				      <h4 class="panel-title">
 				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
 				        Crear Nuevo Hilo</a>
 				      </h4>
 				    </div>
 				    <div id="collapse2" class="panel-collapse collapse">
-				      <div class="borde-redondeado enmarcado-interno background-post panel-body">
+				      <div class="enmarcado-interno background-post panel-body">
 					  	<form class="form-group">
 					  	  <label>Tema: </label>
-						  <input class="borde-redondeado formulario" for="textoNewHilo" type="text" focus="auto" name="temaHiloNuevo"></input>
+						  <input class="formulario" for="textoNewHilo" type="text" focus="auto" name="temaHiloNuevo"></input>
 						  <input type="submit" style="float: right; margin:1%;" id="crearHilo"></input>
-						  <textarea class="form-control borde-redondeado formulario" rows="8" id="textoNewHilo" name="textoHiloNuevo"></textarea>
+						  <textarea class="form-control formulario" rows="8" id="textoNewHilo" name="textoHiloNuevo"></textarea>
 						  <input type="hidden" name="hidden" th:value="${tema}" class="formulario"></input>
 						</form>
 					  </div>
@@ -284,13 +284,13 @@
 				  <br></br>
 				  <div class="panel panel-default">
 				    <div class="panel-heading">
-				      <h4 class="panel-title borde-redondeado">
+				      <h4 class="panel-title">
 				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
 				        Buscar...</a>
 				      </h4>
 				    </div>
 				    <div id="collapse3" class="panel-collapse collapse">
-				      <div class="row borde-redondeado enmarcado-interno background-post panel-body">
+				      <div class="row enmarcado-interno background-post panel-body">
 							<form action="#" id="form-post" class="form-inline my-2 my-lg-0">
 							
 								<input class="form-control mr-sm-2 enmarcado-interno" type="search" id="input-post" name="postBuscado" placeholder="Buscar Post..." aria-label="Search"></input>
@@ -304,10 +304,19 @@
 				  </div>
 				  <br></br>
 				</div>
+				
+				<div id="posteosPaginacion">
+					<input type="hidden" id="temaPosteo" th:value="${tema}"></input>
+					<div id="posteoPaginacionReemplazo1">
+						
+					</div>
+				</div>
 			  
 			  
 				
 			</div>
+			
+			
 			
 					 
 				

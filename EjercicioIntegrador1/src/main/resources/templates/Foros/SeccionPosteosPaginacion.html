@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+	<div id="posteoPaginacionReemplazo1">
+		<div class="row">
+			<div class="col-1">
+			</div>
+			<div class="col-10" style="border: solid;">
+				<div th:each="posteo : ${Pagina}" class="bordes enmarcado-interno">
+					<a href="#">
+						<div>
+							<p th:text="${posteo.titulo}"></p>
+						</div>
+					</a>
+				</div>
+				<!-- Aca la paginacion -->
+				<nav>
+  					<ul class="pagination justify-content-center">
+  					
+    					<li class="page-item" th:if="${mostrarAnterior}"> <!-- th:if="${mostrarAnterior}"  -->
+     		 				<a id="btn-anterior" href="#" tabindex="-1" th:attr="value=${PagActual}-1,title=${tema}" class="btn btn-secondary otroPost">Anterior</a>
+    					</li>
+    					
+    					<li class="page-item" th:if="${mostrarPaginaBegin}"> <!-- th:if="${mostrarPaginaBegin}" -->
+    						<a id="btn-Pagina-1" href="#" th:text="${paginaAnterior}" th:attr="value=${PagActual}-1,title=${tema}" class="btn btn-secondary otroPost"></a>
+    					</li>
+    					
+    					<li class="page-item active">
+      						<a id="btn-Pagina" href="#" th:text="${paginaActual}" th:attr="value=${PagActual},title=${tema}" class="Resaltar btn btn-primary otroPost">
+	      						<span class="sr-only">(current)</span>
+      						</a>
+    					</li>
+    					
+    					<li class="page-item" th:if="${mostrarPaginaEnd}"> <!-- th:if="${mostrarPaginaEnd}" -->
+    						<a id="btn-Pagina+1" href="#" th:text="${paginaSiguiente}" th:attr="value=${PagActual}+1,title=${tema}" class="btn btn-secondary otroPost"></a>
+    					</li>
+    					
+    					<li class="page-item" th:if="${mostrarSiguiente}"> <!-- th:if="${mostrarSiguiente}"  -->
+      						<a id="btn-siguiente" href="#" th:attr="value=${PagActual}+1,title=${tema}" class="btn btn-secondary otroPost">Siguiente</a>
+    					</li>
+    					
+  					</ul>
+				</nav>
+				
+			</div>
+			<div class="col-1">
+			</div>
+		</div>
+		
+	</div>

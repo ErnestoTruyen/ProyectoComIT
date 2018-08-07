@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.AbstractPageRequest;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -751,6 +752,54 @@ public class ExampleController {
 		
 		
 	}
+	
+	@RequestMapping("/Posteos/Paginacion/{tema}/{numeroPagina}")
+	public String posteosPaginacion(Model modelo,@PathVariable String tema,@PathVariable int numeroPagina) { 
+		
+		int elementos_x_pagina = 10;
+		
+		ArrayList<Posteos> posteos= postRepository.findByTema(tema, new PageRequest(numeroPagina,elementos_x_pagina));
+		
+		
+		modelo.addAttribute("tema", tema);
+		modelo.addAttribute("Pagina", posteos);
+		
+		modelo.addAttribute("paginaActual", numeroPagina + 1);
+		modelo.addAttribute("paginaAnterior", numeroPagina);
+		modelo.addAttribute("paginaSiguiente", numeroPagina + 2);
+		
+		
+		//Inicializacion de variables "de" thymeleaf para mostrar o no los botones de la paginacion
+		
+		modelo.addAttribute("mostrarAnterior", true);
+		modelo.addAttribute("mostrarPaginaBegin", true);
+		modelo.addAttribute("mostrarPaginaEnd", true);
+		modelo.addAttribute("mostrarSiguiente", true);
+		modelo.addAttribute("PagActual", numeroPagina);
+
+		
+		if(numeroPagina == 0) {
+			modelo.addAttribute("mostrarAnterior", false);
+			modelo.addAttribute("mostrarPaginaBegin", false);
+		}
+		
+		if(numeroPagina == 1) {
+			modelo.addAttribute("mostrarAnterior", false);
+		}
+		
+		if(postRepository.findByTema(tema, new PageRequest(numeroPagina + 2,elementos_x_pagina)).isEmpty() == true){
+			modelo.addAttribute("mostrarSiguiente", false);
+		}
+		
+		if(postRepository.findByTema(tema, new PageRequest(numeroPagina + 1,elementos_x_pagina)).isEmpty() == true) {
+			modelo.addAttribute("mostrarPaginaEnd", false);
+			modelo.addAttribute("mostrarSiguiente", false);
+		}
+					
+		
+		
+		return "Foros/SeccionPosteosPaginacion";
+	}
 	//---------------------------------------------------------------
 	//-----------------------------------------------------
 	//-----------------------------------------------------
@@ -949,6 +998,7 @@ public class ExampleController {
 			modelo.addAttribute("Section", "SectionForo");
 			modelo.addAttribute("Aside", "AsideDefault");
 			modelo.addAttribute("Footer", "FooterDefault");
+			
 			
 			return "viewFragment";
 			
