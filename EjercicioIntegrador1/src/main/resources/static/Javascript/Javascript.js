@@ -147,6 +147,7 @@ $(document).ready( function(){
 				       });
 				       
 				       
+				       
 				       //Ajax de ejemplo general(nota personal)
 				       //Ajax que carga los primeros 10 posteos al ingresar a un foro
 				       //Cuando la pagina esta cargada, se solicitan los posteoas a traves de ajax y se reemplazan

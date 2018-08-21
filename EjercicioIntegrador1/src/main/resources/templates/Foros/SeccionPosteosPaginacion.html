@@ -7,8 +7,8 @@
 			<div class="col-10" style="border: solid;">
 				<div th:each="posteo : ${Pagina}" class="bordes enmarcado-interno">
 					<a href="#">
-						<div>
-							<p th:text="${posteo.titulo}"></p>
+						<div >
+							<p th:text="${posteo.titulo}" th:id="${posteo.id}" class="posteoAjax1"></p>
 						</div>
 					</a>
 				</div>

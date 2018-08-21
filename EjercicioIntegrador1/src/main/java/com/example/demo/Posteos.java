@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +15,12 @@ public class Posteos {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@Column(name = "titulo")
 	private String titulo;
+	
+	@Column(length=3000)
 	private String texto;
+	
 	private String tema;
 	private Date registrationDate = new Date();
 		
