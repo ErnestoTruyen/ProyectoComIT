@@ -98,7 +98,7 @@ $(document).ready( function(){
 				    			   
 				    		   }
 				    	   }
-				    	   xhttp.open("GET","/Posteos/nuevo-hilo?titulo="+titulo+"&texto="+texto+"&tema="+tema,true);
+				    	   xhttp.open("POST","/Posteos/nuevo-hilo?titulo="+titulo+"&texto="+texto+"&tema="+tema,true);
 				    	   xhttp.send();
 				       });
 				       
